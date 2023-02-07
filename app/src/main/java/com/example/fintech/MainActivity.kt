@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
         signInBtn?.setOnClickListener {
-            val signInIntent: Intent = mGoogleSignInClient.getSignInIntent()
+            val signInIntent: Intent = mGoogleSignInClient.signInIntent
             startActivityForResult(signInIntent, 9001)
         }
     }
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("exp handleSigin", "signInResult:failed code=" + e.statusCode)
+            Log.w("exp handleSignIn", "signInResult:failed code=" + e.statusCode)
             updateUI(null)
         }
     }
