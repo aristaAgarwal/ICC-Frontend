@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         signInButton = findViewById(R.id.sign_in_button)
-//        signInButton?.setSize(SignInButton.SIZE_STANDARD)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(BuildConfig.CLIENT_ID)
@@ -56,8 +55,6 @@ class MainActivity : AppCompatActivity() {
             // Signed in successfully, show authenticated UI.
             updateUI(account)
         } catch (e: ApiException) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("exp handleSignIn", "signInResult:failed code=" + e.statusCode)
             updateUI(null)
         }
@@ -69,9 +66,6 @@ class MainActivity : AppCompatActivity() {
 
         } else {
             Toast.makeText(this,"SIGNED IN",Toast.LENGTH_SHORT).show()
-            Log.e("msg signInSuccess", "SignIn Success")
-
-            Log.d("Account Info", account.toString())
         }
     }
 }
