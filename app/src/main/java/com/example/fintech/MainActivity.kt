@@ -17,10 +17,12 @@ import com.google.android.gms.tasks.Task
 
 class MainActivity : AppCompatActivity() {
     private var signInButton: Button? = null
+    private var signOutButton: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         signInButton = findViewById(R.id.sign_in_button)
+        signOutButton = findViewById(R.id.sign_out_button)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(BuildConfig.CLIENT_ID)
@@ -37,6 +39,13 @@ class MainActivity : AppCompatActivity() {
         signInButton?.setOnClickListener {
             val signInIntent: Intent = mGoogleSignInClient.signInIntent
             getResult.launch(signInIntent)
+        }
+
+        signOutButton?.setOnClickListener{
+            mGoogleSignInClient.signOut()
+                .addOnCompleteListener(this) {
+                    updateUI(null)
+                }
         }
     }
 
