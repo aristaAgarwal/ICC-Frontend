@@ -5,19 +5,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/sign_in_button"
+    <TextView
+        android:id="@+id/welocome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign in"
-        android:layout_centerInParent="true"/>
+        android:text="WELCOME TO HOME ACTIVITY"
+        android:layout_centerInParent="true"
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/sign_out_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign out"
-        android:layout_below="@+id/sign_in_button"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"/>
 
 </RelativeLayout>
