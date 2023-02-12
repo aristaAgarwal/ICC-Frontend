@@ -82,7 +82,6 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "SIGNED IN", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            this.finish()
         }
     }
 }
