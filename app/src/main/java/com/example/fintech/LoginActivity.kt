@@ -47,6 +47,9 @@ class LoginActivity : AppCompatActivity() {
             setLayout(binding.otpSignInLayout, true)
         }
 
+        binding.otpLogin.back.setOnClickListener{
+            setLayout(binding.otpSignInLayout, false)
+        }
     }
 
     override fun onBackPressed() {
