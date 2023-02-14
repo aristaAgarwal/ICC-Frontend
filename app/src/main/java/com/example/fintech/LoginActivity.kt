@@ -27,9 +27,7 @@ class LoginActivity : AppCompatActivity() {
         signInButton = findViewById(R.id.sign_in_button)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(BuildConfig.CLIENT_ID)
-            .requestEmail()
-            .build()
+            .requestIdToken(BuildConfig.CLIENT_ID).requestEmail().build()
         val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
         val getResult =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -63,8 +61,8 @@ class LoginActivity : AppCompatActivity() {
             val idToken = IdToken(id!!)
             id = null
             mainViewModel.authenticate(idToken)
-            mainViewModel.apiCaller.observe(this){
-                if(it!=null){
+            mainViewModel.apiCaller.observe(this) {
+                if (it != null) {
                     updateUI(account)
                 }
             }

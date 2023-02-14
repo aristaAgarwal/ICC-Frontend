@@ -10,24 +10,23 @@ import com.example.fintech.Model.IdToken
 import com.example.fintech.network.RetrofitService
 import kotlinx.coroutines.launch
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
     var api = RetrofitService().authentication
     var _apiCaller = MutableLiveData<AuthenticationDO>()
     val apiCaller: LiveData<AuthenticationDO>
-          get() =  _apiCaller
+        get() = _apiCaller
 
 
-    fun authenticate(idToken: IdToken){
+    fun authenticate(idToken: IdToken) {
         viewModelScope.launch {
             try {
                 val result = api.authentication(idToken)
                 _apiCaller.postValue(result.body())
                 val cookies = result.headers()["Set-Cookie"]
                 Log.e("Cookie", cookies.toString().substringAfter("="))
-            }
-            catch (e:Exception){
-                Log.e("mainViewModel","Error with authentication")
-                Log.e("mainViewModel",e.toString())
+            } catch (e: Exception) {
+                Log.e("mainViewModel", "Error with authentication")
+                Log.e("mainViewModel", e.toString())
             }
         }
     }
