@@ -51,6 +51,7 @@ class OtpLogin : Fragment() {
                 try {
                     val phoneNumber = Identity.getSignInClient(requireContext())
                         .getPhoneNumberFromIntent(result.data)
+                    binding?.phoneNumber?.setText(phoneNumber)
                     Log.e("phine number", phoneNumber)
                 } catch (e: Exception) {
                     Log.e("Login Activity phn", "Phone Number Hint failed")
