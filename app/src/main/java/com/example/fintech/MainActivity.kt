@@ -18,9 +18,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             this.finish()
-        }
-        else
-        {
+        } else {
             signOut()
         }
 
@@ -35,10 +33,10 @@ class MainActivity : AppCompatActivity() {
         val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
         signOutButton?.setOnClickListener {
             mGoogleSignInClient.signOut().addOnCompleteListener(this) {
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-                    this.finish()
-                }
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                this.finish()
+            }
         }
 
     }
