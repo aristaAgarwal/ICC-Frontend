@@ -22,9 +22,12 @@ class MainViewModel: ViewModel() {
             try {
                 val result = api.authentication(idToken)
                 _apiCaller.postValue(result.body())
+                val cookies = result.headers()["Set-Cookie"]
+                Log.e("Cookie", cookies.toString().substringAfter("="))
             }
             catch (e:Exception){
                 Log.e("mainViewModel","Error with authentication")
+                Log.e("mainViewModel",e.toString())
             }
         }
     }

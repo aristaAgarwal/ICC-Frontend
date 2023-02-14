@@ -57,18 +57,19 @@ class LoginActivity : AppCompatActivity() {
         val mainViewModel by viewModels<MainViewModel>()
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            val id = account.idToken
+            var id: String? = account.idToken
             Log.e("idToken: ", id.toString())
 
             val idToken = IdToken(id!!)
+            id = null
             mainViewModel.authenticate(idToken)
             mainViewModel.apiCaller.observe(this){
                 if(it!=null){
-                    Log.e("authentication",it.toString())
+                    updateUI(account)
                 }
             }
             // Signed in successfully, show authenticated UI.
-            updateUI(account)
+
         } catch (e: ApiException) {
             Log.w("exp handleSignIn", "signInResult:failed code=" + e.statusCode)
             updateUI(null)

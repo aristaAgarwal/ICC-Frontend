@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    val baseUrl = "https://69df-103-215-237-178.in.ngrok.io/"
+    val baseUrl = "http://10.0.2.2:8080/"
 
     val client = OkHttpClient.Builder()
         .build()
