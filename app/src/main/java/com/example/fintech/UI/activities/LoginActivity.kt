@@ -69,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
             Log.e("idToken: ", id.toString())
 
             mainViewModel.idToken = IdToken(id!!)
+            Log.e("idTokenInLoginActivity", mainViewModel.idToken.toString())
             mainViewModel.authenticate(mainViewModel.idToken!!)
             mainViewModel.apiCaller.observe(this) {
                 if (it != null) {
