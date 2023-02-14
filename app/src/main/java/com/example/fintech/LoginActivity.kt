@@ -5,15 +5,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.cardview.widget.CardView
-import androidx.lifecycle.ViewModel
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import androidx.core.view.isVisible
 import com.example.fintech.Model.IdToken
+import com.example.fintech.databinding.ActivityLoginBinding
 import com.example.fintech.viewModel.MainViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -22,11 +20,11 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 
 class LoginActivity : AppCompatActivity() {
-    private var signInButton: CardView? = null
+    lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        signInButton = findViewById(R.id.sign_in_button)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(BuildConfig.CLIENT_ID).requestEmail().build()
@@ -40,11 +38,26 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-        signInButton?.setOnClickListener {
+        binding.signInButton.setOnClickListener {
             val signInIntent: Intent = mGoogleSignInClient.signInIntent
             getResult.launch(signInIntent)
         }
 
+        binding.otpSignInBtn.setOnClickListener {
+            setLayout(binding.otpSignInLayout, true)
+        }
+
+    }
+
+    override fun onBackPressed() {
+        if(binding.otpSignInLayout.isVisible){
+            setLayout(binding.otpSignInLayout, false)
+        }
+    }
+    fun setLayout(layout: RelativeLayout, b: Boolean) {
+        layout.isVisible = b
+        layout.isClickable = b
+        layout.isFocusable = b
     }
 
     override fun onStart() {
