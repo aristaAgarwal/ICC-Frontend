@@ -1,16 +1,18 @@
-package com.example.fintech
+package com.example.fintech.UI.activities
 
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.RelativeLayout
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
+import com.example.fintech.BuildConfig
 import com.example.fintech.Model.IdToken
+import com.example.fintech.R
+import com.example.fintech.UI.fragments.OtpLogin
 import com.example.fintech.databinding.ActivityLoginBinding
 import com.example.fintech.viewModel.MainViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -43,25 +45,15 @@ class LoginActivity : AppCompatActivity() {
             getResult.launch(signInIntent)
         }
 
-        binding.otpSignInBtn.setOnClickListener {
-            setLayout(binding.otpSignInLayout, true)
-        }
-
-        binding.otpLogin.back.setOnClickListener{
-            setLayout(binding.otpSignInLayout, false)
-        }
     }
 
-    override fun onBackPressed() {
-        if(binding.otpSignInLayout.isVisible){
-            setLayout(binding.otpSignInLayout, false)
-        }
+    fun onClick(view: View) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.frameLayout, OtpLogin())
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
-    fun setLayout(layout: RelativeLayout, b: Boolean) {
-        layout.isVisible = b
-        layout.isClickable = b
-        layout.isFocusable = b
-    }
+
 
     override fun onStart() {
         super.onStart()

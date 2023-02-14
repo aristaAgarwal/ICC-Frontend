@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dhoni_bg"
-    tools:context=".MainActivity">
+    tools:context=".UI.activities.MainActivity">
 
     <View
         android:layout_width="match_parent"
@@ -55,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:onClick="onClick"
             android:layout_marginHorizontal="24dp"
             app:cardCornerRadius="16dp">
 
@@ -83,15 +84,9 @@
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/otp_sign_in_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-
-        <include
-            android:id="@+id/otp_login"
-            layout="@layout/phone_no_login_layout" />
-    </RelativeLayout>
-
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 </RelativeLayout>
