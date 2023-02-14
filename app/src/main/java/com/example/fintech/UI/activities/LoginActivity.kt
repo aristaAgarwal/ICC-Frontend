@@ -68,9 +68,9 @@ class LoginActivity : AppCompatActivity() {
             var id: String? = account.idToken
             Log.e("idToken: ", id.toString())
 
-            mainViewModel.idToken = IdToken(id!!)
-            Log.e("idTokenInLoginActivity", mainViewModel.idToken.toString())
-            mainViewModel.authenticate(mainViewModel.idToken!!)
+            val idToken = IdToken(id!!)
+            id = null
+            mainViewModel.authenticate(idToken)
             mainViewModel.apiCaller.observe(this) {
                 if (it != null) {
                     updateUI(account)

@@ -4,4 +4,8 @@
     <string name="login_with_google">Login with Google</string>
     <string name="login_with_phone_number">Login with Phone number</string>
     <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="otp_instruction">A 4-digit code has been sent to</string>
+    <string name="phone_edit">+91 9027 394 078</string>
+    <string name="continue_string">Continue</string>
 </resources>

@@ -6,8 +6,103 @@
     android:layout_height="match_parent"
     android:background="@drawable/otp_bg">
 
-    <View android:layout_height="match_parent"
+    <View
         android:layout_width="match_parent"
-        android:background="@drawable/dark_bg_gradient"/>
+        android:layout_height="match_parent"
+        android:background="@drawable/dark_bg_gradient" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="155dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="45dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enter_otp"
+            android:textColor="#EBEBEB"
+            android:textSize="28sp"
+            android:fontFamily="@font/poppins_semibold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/otp_instruction"
+            android:fontFamily="@font/poppins_regular"
+            style="@style/light_text"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/phone_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/phone_edit"
+                android:fontFamily="@font/poppins_semibold"
+                style="@style/light_text"/>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginVertical="2dp"
+                android:padding="2dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/edit_square" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_height="1dp"
+            android:layout_width="135dp"
+            android:layout_marginTop="-6dp"
+            android:background="#EBEBEB" />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:inputType="phone"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="#EBEBEB"
+            android:backgroundTint="#EBEBEB"
+            android:textSize="36sp"
+            android:autofillHints="phone" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            app:cardCornerRadius="12dp">
+
+            <TextView
+                android:id="@+id/google_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="49dp"
+                android:text="@string/continue_string"
+                android:fontFamily="@font/poppins_medium"
+                android:textAppearance="@style/dark_text" />
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
 
 </RelativeLayout>

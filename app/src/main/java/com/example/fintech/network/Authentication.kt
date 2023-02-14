@@ -12,9 +12,4 @@ interface Authentication {
     suspend fun authentication(
         @Body idToken: IdToken
     ): Response<AuthenticationDO>
-
-    @POST("auth/logout")
-    suspend fun logout(
-        @Body idToken: IdToken
-    ): Response<AuthenticationDO>
 }
