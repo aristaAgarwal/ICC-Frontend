@@ -46,15 +46,29 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/phone_edit"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/phone_edit"
-                android:fontFamily="@font/poppins_semibold"
-                style="@style/light_text"/>
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone_edit"
+                    android:fontFamily="@font/poppins_semibold"
+                    style="@style/light_text"/>
+
+                <View
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="-8dp"
+                    android:background="#EBEBEB" />
+
+            </LinearLayout>
 
             <ImageView
+                android:id="@+id/edit_phone"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginVertical="2dp"
@@ -64,11 +78,7 @@
         </LinearLayout>
 
 
-        <View
-            android:layout_height="1dp"
-            android:layout_width="135dp"
-            android:layout_marginTop="-6dp"
-            android:background="#EBEBEB" />
+
 
 
         <androidx.appcompat.widget.AppCompatEditText
@@ -98,10 +108,50 @@
                 android:layout_marginVertical="10dp"
                 android:layout_marginHorizontal="49dp"
                 android:text="@string/continue_string"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/inter_semibold"
                 android:textAppearance="@style/dark_text" />
 
         </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/didn_t_receive_otp"
+                android:fontFamily="@font/inter_light"
+                android:textColor="#8FFFFFFF" />
+
+            <LinearLayout
+                android:id="@+id/resend_otp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/resend_otp"
+                    android:fontFamily="@font/inter_light"
+                    android:textColor="#EBEBEB" />
+
+                <View
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="-2dp"
+                    android:background="#EBEBEB" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 
