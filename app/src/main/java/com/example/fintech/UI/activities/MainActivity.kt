@@ -1,9 +1,11 @@
-package com.example.fintech
+package com.example.fintech.UI.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.fintech.BuildConfig
+import com.example.fintech.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
