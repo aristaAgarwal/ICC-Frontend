@@ -48,10 +48,22 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun onClick(view: View) {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.frameLayout, OtpLogin())
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        when (view.id) {
+            R.id.back -> {
+                val fragmentManager = this.supportFragmentManager
+                val fragment = fragmentManager.findFragmentById(R.id.frameLayout)
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.remove(fragment!!)
+                fragmentTransaction.commit()
+                fragmentManager.popBackStack()
+            }
+            R.id.otp_sign_in_btn -> {
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                fragmentTransaction.add(R.id.frameLayout, OtpLogin())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
+        }
     }
 
 
