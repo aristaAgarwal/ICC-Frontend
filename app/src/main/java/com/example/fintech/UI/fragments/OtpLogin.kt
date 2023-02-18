@@ -54,7 +54,7 @@ class OtpLogin : Fragment() {
         val phoneNumberHintIntentResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
                 try {
-                    var phoneNumber = Identity.getSignInClient(requireContext())
+                    val phoneNumber = Identity.getSignInClient(requireContext())
                         .getPhoneNumberFromIntent(result.data)
                     binding?.phoneNumber?.setText(phoneNumber)
 
@@ -79,7 +79,5 @@ class OtpLogin : Fragment() {
             }
 
     }
-
-
 
 }
