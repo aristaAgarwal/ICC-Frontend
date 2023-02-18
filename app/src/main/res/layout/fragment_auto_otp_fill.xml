@@ -77,10 +77,6 @@
                 android:src="@drawable/edit_square" />
         </LinearLayout>
 
-
-
-
-
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/phone_number"
             android:layout_width="match_parent"
@@ -146,13 +142,6 @@
                     android:background="#EBEBEB" />
 
             </LinearLayout>
-
-
-
         </LinearLayout>
-
-
     </LinearLayout>
-
-
 </RelativeLayout>

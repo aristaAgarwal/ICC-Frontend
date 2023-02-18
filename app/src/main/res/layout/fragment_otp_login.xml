@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".UI.fragments.OtpLogin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dhoni_bg">
@@ -19,7 +20,7 @@
         android:layout_above="@+id/phn_no_cv"
         android:src="@drawable/back"
         android:padding="10dp"
-        android:onClick="onClick"
+        android:onClick= "onClick"
         android:layout_marginStart="24dp"
         android:layout_marginBottom="45dp"/>
 
@@ -39,7 +40,7 @@
             android:layout_marginVertical="10dp"
             android:orientation="horizontal">
 
-                <EditText
+            <EditText
                     android:id="@+id/phone_number"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
@@ -52,6 +53,7 @@
                     android:autofillHints="phone" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/otp_layout"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 app:cardBackgroundColor="@color/icc_black"

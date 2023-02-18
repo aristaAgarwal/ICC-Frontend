@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import com.example.fintech.BuildConfig
 import com.example.fintech.Model.IdToken
 import com.example.fintech.R
+import com.example.fintech.UI.fragments.AutoOtpFill
 import com.example.fintech.UI.fragments.OtpLogin
 import com.example.fintech.databinding.ActivityLoginBinding
 import com.example.fintech.viewModel.MainViewModel
@@ -48,10 +49,29 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun onClick(view: View) {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.frameLayout, OtpLogin())
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        when (view.id) {
+            R.id.back -> {
+                Log.e("back", "mai back mai hu")
+                val fragmentManager = this.supportFragmentManager
+                val fragment = fragmentManager?.findFragmentById(R.id.frameLayout)
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.remove(fragment!!)
+                fragmentTransaction?.commit();
+                fragmentManager?.popBackStack();
+            }
+            R.id.otp_sign_in_btn -> {
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                fragmentTransaction.add(R.id.frameLayout, OtpLogin())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
+            R.id.otp_layout -> {
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                fragmentTransaction.add(R.id.frameLayout, AutoOtpFill())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
+        }
     }
 
 

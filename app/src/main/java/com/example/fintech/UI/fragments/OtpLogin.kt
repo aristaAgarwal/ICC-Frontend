@@ -32,16 +32,21 @@ class OtpLogin : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getPhoneNo()
-
     }
 
-    fun onClick(view: View) {
-        when (view.id) {
-            R.id.back -> {
-
-            }
-        }
-    }
+//    fun onClick(view: View) {
+//        when (view.id) {
+//            R.id.back -> {
+//                val fragmentManager = activity?.supportFragmentManager
+//                val fragment = fragmentManager?.findFragmentById(R.id.frameLayout)
+//                val fragmentTransaction = fragmentManager?.beginTransaction()
+//                fragmentTransaction?.remove(fragment!!)
+//                fragmentTransaction?.commit();
+//                fragmentManager?.popBackStack();
+//                Log.e("Mai run ni hua", "Mai run nahi hounga")
+//            }
+//        }
+//    }
 
     fun getPhoneNo() {
         val request: GetPhoneNumberHintIntentRequest =
@@ -49,10 +54,11 @@ class OtpLogin : Fragment() {
         val phoneNumberHintIntentResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
                 try {
-                    val phoneNumber = Identity.getSignInClient(requireContext())
+                    var phoneNumber = Identity.getSignInClient(requireContext())
                         .getPhoneNumberFromIntent(result.data)
                     binding?.phoneNumber?.setText(phoneNumber)
-                    Log.e("phine number", phoneNumber)
+
+                    Log.e("phone number", phoneNumber)
                 } catch (e: Exception) {
                     Log.e("Login Activity phn", "Phone Number Hint failed")
                 }
@@ -73,5 +79,7 @@ class OtpLogin : Fragment() {
             }
 
     }
+
+
 
 }
