@@ -34,20 +34,6 @@ class OtpLogin : Fragment() {
         getPhoneNo()
     }
 
-//    fun onClick(view: View) {
-//        when (view.id) {
-//            R.id.back -> {
-//                val fragmentManager = activity?.supportFragmentManager
-//                val fragment = fragmentManager?.findFragmentById(R.id.frameLayout)
-//                val fragmentTransaction = fragmentManager?.beginTransaction()
-//                fragmentTransaction?.remove(fragment!!)
-//                fragmentTransaction?.commit();
-//                fragmentManager?.popBackStack();
-//                Log.e("Mai run ni hua", "Mai run nahi hounga")
-//            }
-//        }
-//    }
-
     fun getPhoneNo() {
         val request: GetPhoneNumberHintIntentRequest =
             GetPhoneNumberHintIntentRequest.builder().build()

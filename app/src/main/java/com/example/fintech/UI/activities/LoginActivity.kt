@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import com.example.fintech.BuildConfig
 import com.example.fintech.Model.IdToken
 import com.example.fintech.R
+import com.example.fintech.UI.fragments.OtpFetch
 import com.example.fintech.UI.fragments.OtpLogin
 import com.example.fintech.databinding.ActivityLoginBinding
 import com.example.fintech.viewModel.MainViewModel
@@ -50,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
     fun onClick(view: View) {
         when (view.id) {
             R.id.back -> {
-                val fragmentManager = this.supportFragmentManager
+                val fragmentManager = supportFragmentManager
                 val fragment = fragmentManager.findFragmentById(R.id.frameLayout)
                 val fragmentTransaction = fragmentManager.beginTransaction()
                 fragmentTransaction.remove(fragment!!)
@@ -62,6 +63,22 @@ class LoginActivity : AppCompatActivity() {
                 fragmentTransaction.add(R.id.frameLayout, OtpLogin())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
+            }
+            R.id.submit_no -> {
+                Log.e("submit","Clicked")
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.frameLayout, OtpFetch())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
+            R.id.back_btn ->{
+
+                val fragmentManager = supportFragmentManager
+                val fragment = fragmentManager.findFragmentById(R.id.frameLayout)
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.remove(fragment!!)
+                fragmentTransaction.commit()
+                fragmentManager.popBackStack()
             }
         }
     }
@@ -78,16 +95,16 @@ class LoginActivity : AppCompatActivity() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             var id: String? = account.idToken
-            Log.e("idToken: ", id.toString())
-
-            val idToken = IdToken(id!!)
-            id = null
-            mainViewModel.authenticate(idToken)
-            mainViewModel.apiCaller.observe(this) {
-                if (it != null) {
+//            Log.e("idToken: ", id.toString())
+//
+//            val idToken = IdToken(id!!)
+//            id = null
+//            mainViewModel.authenticate(idToken)
+//            mainViewModel.apiCaller.observe(this) {
+//                if (it != null) {
                     updateUI(account)
-                }
-            }
+//                }
+//            }
             // Signed in successfully, show authenticated UI.
 
         } catch (e: ApiException) {

@@ -53,9 +53,10 @@
                     android:autofillHints="phone" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/otp_layout"
+                android:id="@+id/submit_no"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:onClick="onClick"
                 app:cardBackgroundColor="@color/icc_black"
                 android:layout_gravity="center_vertical"
                 app:cardCornerRadius="15dp">
@@ -70,6 +71,5 @@
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
-
+    </androidx.cardview.widget.CardView>\
 </RelativeLayout>
