@@ -11,12 +11,13 @@ import android.view.ViewGroup
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentManager
+import com.example.fintech.Comminucator.PhoneCommunicator
 import com.example.fintech.R
 import com.example.fintech.databinding.FragmentOtpLoginBinding
 import com.google.android.gms.auth.api.identity.GetPhoneNumberHintIntentRequest
 import com.google.android.gms.auth.api.identity.Identity
 
-class OtpLogin : Fragment() {
+class OtpLogin : Fragment(), PhoneCommunicator {
 
     var binding: FragmentOtpLoginBinding? = null
 
@@ -26,6 +27,10 @@ class OtpLogin : Fragment() {
     ): View {
         binding = FragmentOtpLoginBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
+        binding?.submitNo?.setOnClickListener {
+            passPhone(binding?.phoneNumber?.text.toString())
+            Log.e("submit",binding?.phoneNumber?.text.toString())
+        }
         return binding!!.root
     }
 
@@ -64,6 +69,16 @@ class OtpLogin : Fragment() {
                 Log.e("Login Activity phn", "Phone Number Hint failed")
             }
 
+    }
+
+    override fun passPhone(editTextInput: String) {
+        val bundle = Bundle()
+        bundle.putString("inputText", editTextInput)
+        val transaction = parentFragmentManager.beginTransaction()
+        OtpFetch().arguments = bundle
+        transaction.replace(R.id.frameLayout, OtpFetch())
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 }

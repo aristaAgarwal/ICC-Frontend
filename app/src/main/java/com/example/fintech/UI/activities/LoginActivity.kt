@@ -9,12 +9,15 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.fragment.app.FragmentTransaction
 import com.example.fintech.BuildConfig
+import com.example.fintech.Comminucator.PhoneCommunicator
 import com.example.fintech.Model.IdToken
 import com.example.fintech.R
 import com.example.fintech.UI.fragments.OtpFetch
 import com.example.fintech.UI.fragments.OtpLogin
 import com.example.fintech.databinding.ActivityLoginBinding
+import com.example.fintech.databinding.FragmentOtpLoginBinding
 import com.example.fintech.viewModel.MainViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -64,15 +67,7 @@ class LoginActivity : AppCompatActivity() {
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
             }
-            R.id.submit_no -> {
-                Log.e("submit","Clicked")
-                val fragmentTransaction = supportFragmentManager.beginTransaction()
-                fragmentTransaction.replace(R.id.frameLayout, OtpFetch())
-                fragmentTransaction.addToBackStack(null)
-                fragmentTransaction.commit()
-            }
             R.id.back_btn ->{
-
                 val fragmentManager = supportFragmentManager
                 val fragment = fragmentManager.findFragmentById(R.id.frameLayout)
                 val fragmentTransaction = fragmentManager.beginTransaction()
@@ -95,16 +90,17 @@ class LoginActivity : AppCompatActivity() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             var id: String? = account.idToken
-//            Log.e("idToken: ", id.toString())
-//
-//            val idToken = IdToken(id!!)
-//            id = null
-//            mainViewModel.authenticate(idToken)
-//            mainViewModel.apiCaller.observe(this) {
-//                if (it != null) {
+            Log.e("idToken: ", id.toString())
+
+            val idToken = IdToken(id!!)
+            id = null
+            Log.e("apiIdToken", idToken.toString())
+            mainViewModel.authenticate(idToken)
+            mainViewModel.apiCaller.observe(this) {
+                if (it != null) {
                     updateUI(account)
-//                }
-//            }
+                }
+            }
             // Signed in successfully, show authenticated UI.
 
         } catch (e: ApiException) {
@@ -113,7 +109,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUI(account: GoogleSignInAccount?) {
+    fun updateUI(account: GoogleSignInAccount?) {
         if (account == null) {
             Toast.makeText(this, "Not signed in", Toast.LENGTH_SHORT).show()
 
