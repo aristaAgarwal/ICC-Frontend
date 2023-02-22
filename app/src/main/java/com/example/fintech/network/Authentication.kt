@@ -1,6 +1,6 @@
 package com.example.fintech.network
 
-import com.example.fintech.Model.*
+import com.example.fintech.model.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Header
@@ -16,17 +16,17 @@ interface Authentication {
     @POST("auth/send/otp")
     suspend fun otpAuthentication(
         @Body phone: Phone
-    ): Response<LoginOtpResponseDO>
+    ): Response<AuthenticationDO>
 
     @POST("auth/verify/otp")
     suspend fun otpVerification(
         @Body verifyOtpDO: VerifyOtpDO
-    ): Response<OtpVerifiedResponseDO>
+    ): Response<AuthenticationDO>
 
     @POST("auth/logout")
     suspend fun logout(
         @Header("Cookies") cookies: String
-    ): Response<LogoutDO>
+    ): Response<AuthenticationDO>
 
 
 }

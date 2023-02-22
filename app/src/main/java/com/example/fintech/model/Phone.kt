@@ -1,4 +1,4 @@
-package com.example.fintech.Model
+package com.example.fintech.model
 
 data class Phone (
     val phone: String

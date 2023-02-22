@@ -1,4 +1,4 @@
-package com.example.fintech.Model
+package com.example.fintech.model
 
 data class VerifyOtpDO(
     val phone: String,

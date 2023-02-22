@@ -1,10 +1,10 @@
-package com.example.fintech.Model
+package com.example.fintech.model
 
-data class DataX(
+data class Data(
     val coins_earned: Int,
     val created_at: Double,
     val deleted: Boolean,
-    val email: Any,
+    val email: String,
     val fcm: Any,
     val id: String,
     val name: String,

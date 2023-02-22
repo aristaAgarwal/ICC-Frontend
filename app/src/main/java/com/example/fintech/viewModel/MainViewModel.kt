@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fintech.Model.*
+import com.example.fintech.model.*
 import com.example.fintech.network.RetrofitService
 import kotlinx.coroutines.launch
 
@@ -18,19 +18,8 @@ class MainViewModel : ViewModel() {
         get() = _apiCaller
 
     var otpApi = RetrofitService().otpAuthentication
-    var _otpApiCaller = MutableLiveData<LoginOtpResponseDO>()
-    val otpApiCaller: LiveData<LoginOtpResponseDO>
-        get() = _otpApiCaller
-
     var verifyOtpApi = RetrofitService().otpVerification
-    var _verifyOtpApiCaller = MutableLiveData<OtpVerifiedResponseDO>()
-    val verifyOtpApiCaller: LiveData<OtpVerifiedResponseDO>
-        get() = _verifyOtpApiCaller
-
     var logoutApi = RetrofitService().logout
-    var _logoutApiCaller = MutableLiveData<LogoutDO>()
-    val logoutApiCaller: LiveData<LogoutDO>
-        get() = _logoutApiCaller
 
     fun authenticate(idToken: IdToken) {
         viewModelScope.launch {
@@ -50,9 +39,7 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val result = otpApi.otpAuthentication(phone)
-                _otpApiCaller.postValue(result.body())
-                val head = result.headers()
-                Log.e("SendOTPhead", head.toString())
+               _apiCaller.postValue(result.body())
                 Log.e("mainViewModel", "otpAuthentication Successful")
             } catch (e: Exception) {
                 Log.e("mainViewModel", "Error with otpAuthentication")
@@ -65,7 +52,7 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val result = verifyOtpApi.otpVerification(verifyOtpDO)
-                _verifyOtpApiCaller.postValue(result.body())
+                _apiCaller.postValue(result.body())
                 cookies = result.headers()["Set-Cookie"].toString().substringAfter("=").substringBefore("; ")
                 val bodyContent = result.body()
                 Log.e("OtpSignInCookie", cookies!!)
@@ -82,11 +69,7 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val result = logoutApi.logout(cookies)
-                _logoutApiCaller.postValue(result.body())
-//                val cookies = result.headers()["Set-Cookie"]
-                val bodyContent = result.body()
-//                Log.e("Cookie", cookies.toString().substringAfter("="))
-                Log.e("LogoutBody", bodyContent.toString())
+                _apiCaller.postValue(result.body())
                 Log.e("mainViewModel", "logout Successful")
             } catch (e: Exception) {
                 Log.e("mainViewModel", "Error with logout")

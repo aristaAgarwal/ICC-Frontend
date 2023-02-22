@@ -9,15 +9,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.fragment.app.FragmentTransaction
 import com.example.fintech.BuildConfig
-import com.example.fintech.Comminucator.PhoneCommunicator
-import com.example.fintech.Model.IdToken
+import com.example.fintech.model.IdToken
 import com.example.fintech.R
-import com.example.fintech.UI.fragments.OtpFetch
-import com.example.fintech.UI.fragments.OtpLogin
+import com.example.fintech.UI.fragments.FetchNumber
 import com.example.fintech.databinding.ActivityLoginBinding
-import com.example.fintech.databinding.FragmentOtpLoginBinding
 import com.example.fintech.viewModel.MainViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -63,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
             }
             R.id.otp_sign_in_btn -> {
                 val fragmentTransaction = supportFragmentManager.beginTransaction()
-                fragmentTransaction.add(R.id.frameLayout, OtpLogin())
+                fragmentTransaction.add(R.id.frameLayout, FetchNumber())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
             }

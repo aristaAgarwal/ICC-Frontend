@@ -6,9 +6,7 @@ import android.util.Log
 import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import com.example.fintech.BuildConfig
-import com.example.fintech.Model.Phone
 import com.example.fintech.R
 import com.example.fintech.viewModel.MainViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -51,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 cookies = mainViewModel.cookies
                 mainViewModel.logout(cookies!!)
                 Log.e("MainActivityCookies", cookies!!)
-                mainViewModel.logoutApiCaller.observe(this) {
+                mainViewModel.apiCaller.observe(this) {
                     if (it != null) {
                         Log.e("MainActivity", "logout")
                     }

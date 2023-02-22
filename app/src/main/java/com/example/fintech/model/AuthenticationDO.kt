@@ -1,8 +1,8 @@
-package com.example.fintech.Model
+package com.example.fintech.model
 
 data class AuthenticationDO(
     val code: Int,
-    val `data`: Data,
+    val data: Any,
     val message: Any,
     val status: Boolean
 )
