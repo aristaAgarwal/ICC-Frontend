@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.example.fintech.model.Phone
 import com.example.fintech.model.VerifyOtpDO
 import com.example.fintech.UI.activities.MainActivity
+import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.FragmentOtpFetchBinding
 import com.example.fintech.viewModel.MainViewModel
 import com.google.android.gms.common.api.ApiException
@@ -44,6 +45,7 @@ class OtpFetch : Fragment() {
             mainViewModel.otpVerification(verifyOtpDO)
             mainViewModel.apiCaller.observe(viewLifecycleOwner){
                 if (mainViewModel.cookies != null) {
+                    AppPreferences(context).cookies = mainViewModel.cookies
                     val intent = Intent(activity, MainActivity::class.java)
                     startActivity(intent)
                 }

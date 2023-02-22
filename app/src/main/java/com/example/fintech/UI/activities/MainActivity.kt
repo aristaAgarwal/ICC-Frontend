@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fintech.BuildConfig
 import com.example.fintech.R
+import com.example.fintech.constants.AppPreferences
 import com.example.fintech.viewModel.MainViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -15,13 +16,12 @@ import com.google.android.gms.common.api.ApiException
 
 
 class MainActivity : AppCompatActivity() {
-    private var cookies: String? = null
     private var signOutButton: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (GoogleSignIn.getLastSignedInAccount(this) == null) {
+        if (AppPreferences(this).cookies == null) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             this.finish()
@@ -46,9 +46,6 @@ class MainActivity : AppCompatActivity() {
 
             val mainViewModel by viewModels<MainViewModel>()
             try {
-                cookies = mainViewModel.cookies
-                mainViewModel.logout(cookies!!)
-                Log.e("MainActivityCookies", cookies!!)
                 mainViewModel.apiCaller.observe(this) {
                     if (it != null) {
                         Log.e("MainActivity", "logout")

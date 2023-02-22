@@ -19,6 +19,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField("String", "CLIENT_ID", apikeyProperties['client_id'])
+        buildConfigField("String", "IP", apikeyProperties['ip'])
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

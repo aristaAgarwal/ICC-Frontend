@@ -1,12 +1,13 @@
 package com.example.fintech.network
 
+import com.example.fintech.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    val baseUrl = "http://192.168.1.104:8080/"
+    val baseUrl = "http://" +BuildConfig.IP + ":8080/"
 
     val client = OkHttpClient.Builder()
         .build()
