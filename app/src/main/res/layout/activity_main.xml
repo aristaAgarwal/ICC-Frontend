@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.activities.MainActivity">
+    tools:context=".UI.activities.MainActivity"
+    android:background="@color/black">
 
     <TextView
         android:id="@+id/welocome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="WELCOME TO HOME ACTIVITY"
+        android:textColor="@color/white"
         android:layout_centerInParent="true"
         android:textStyle="bold"/>
 
@@ -18,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign out"
+        android:textColor="@color/black"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"/>
 

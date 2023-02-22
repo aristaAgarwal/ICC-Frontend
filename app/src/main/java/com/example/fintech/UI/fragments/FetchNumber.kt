@@ -1,7 +1,6 @@
 package com.example.fintech.UI.fragments
 
 import android.app.PendingIntent
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,37 +9,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
+import com.example.fintech.Comminucator.PhoneCommunicator
 import com.example.fintech.R
-import com.example.fintech.databinding.FragmentOtpLoginBinding
+import com.example.fintech.databinding.FragmentFetchNumberBinding
+import com.example.fintech.model.Phone
+import com.example.fintech.viewModel.MainViewModel
 import com.google.android.gms.auth.api.identity.GetPhoneNumberHintIntentRequest
 import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.common.api.ApiException
 
-class OtpLogin : Fragment() {
+class FetchNumber : Fragment(), PhoneCommunicator {
 
-    var binding: FragmentOtpLoginBinding? = null
+    var binding: FragmentFetchNumberBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentOtpLoginBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
+        binding = FragmentFetchNumberBinding.inflate(inflater, container, false)
         return binding!!.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         getPhoneNo()
-
-    }
-
-    fun onClick(view: View) {
-        when (view.id) {
-            R.id.back -> {
-
-            }
-        }
     }
 
     fun getPhoneNo() {
@@ -52,7 +45,10 @@ class OtpLogin : Fragment() {
                     val phoneNumber = Identity.getSignInClient(requireContext())
                         .getPhoneNumberFromIntent(result.data)
                     binding?.phoneNumber?.setText(phoneNumber)
-                    Log.e("phine number", phoneNumber)
+                    binding?.submitNo?.setOnClickListener {
+                        getOtp()
+                    }
+                    Log.e("phone number", phoneNumber)
                 } catch (e: Exception) {
                     Log.e("Login Activity phn", "Phone Number Hint failed")
                 }
@@ -72,6 +68,35 @@ class OtpLogin : Fragment() {
                 Log.e("Login Activity phn", "Phone Number Hint failed")
             }
 
+    }
+
+    private fun getOtp() {
+
+        val mainViewModel by viewModels<MainViewModel>()
+        try {
+            val phoneNumber: String = binding?.phoneNumber?.text.toString().takeLast(10)
+            Log.e("phone OtpFetch: ", phoneNumber)
+
+            val phone = Phone(phoneNumber)
+            mainViewModel.otpAuthentication(phone)
+            mainViewModel.apiCaller.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    passPhone(binding?.phoneNumber?.text.toString())
+                }
+            }
+
+        } catch (e: ApiException) {
+            Log.w("exp handleSignIn", "signInResult:failed code=" + e.statusCode)
+        }
+    }
+    override fun passPhone(editTextInput: String) {
+        val bundle = Bundle()
+        bundle.putString("inputText", editTextInput)
+        val transaction = parentFragmentManager.beginTransaction()
+        OtpFetch().arguments = bundle
+        transaction.replace(R.id.frameLayout, OtpFetch())
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 }

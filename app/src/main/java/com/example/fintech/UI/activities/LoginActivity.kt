@@ -10,9 +10,10 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.example.fintech.BuildConfig
-import com.example.fintech.Model.IdToken
+import com.example.fintech.model.IdToken
 import com.example.fintech.R
-import com.example.fintech.UI.fragments.OtpLogin
+import com.example.fintech.UI.fragments.FetchNumber
+import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.ActivityLoginBinding
 import com.example.fintech.viewModel.MainViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -50,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
     fun onClick(view: View) {
         when (view.id) {
             R.id.back -> {
-                val fragmentManager = this.supportFragmentManager
+                val fragmentManager = supportFragmentManager
                 val fragment = fragmentManager.findFragmentById(R.id.frameLayout)
                 val fragmentTransaction = fragmentManager.beginTransaction()
                 fragmentTransaction.remove(fragment!!)
@@ -59,9 +60,17 @@ class LoginActivity : AppCompatActivity() {
             }
             R.id.otp_sign_in_btn -> {
                 val fragmentTransaction = supportFragmentManager.beginTransaction()
-                fragmentTransaction.add(R.id.frameLayout, OtpLogin())
+                fragmentTransaction.add(R.id.frameLayout, FetchNumber())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
+            }
+            R.id.back_btn ->{
+                val fragmentManager = supportFragmentManager
+                val fragment = fragmentManager.findFragmentById(R.id.frameLayout)
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.remove(fragment!!)
+                fragmentTransaction.commit()
+                fragmentManager.popBackStack()
             }
         }
     }
@@ -82,9 +91,11 @@ class LoginActivity : AppCompatActivity() {
 
             val idToken = IdToken(id!!)
             id = null
+            Log.e("apiIdToken", idToken.toString())
             mainViewModel.authenticate(idToken)
             mainViewModel.apiCaller.observe(this) {
                 if (it != null) {
+                    AppPreferences(this).cookies = mainViewModel.cookies
                     updateUI(account)
                 }
             }
@@ -96,7 +107,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUI(account: GoogleSignInAccount?) {
+    fun updateUI(account: GoogleSignInAccount?) {
         if (account == null) {
             Toast.makeText(this, "Not signed in", Toast.LENGTH_SHORT).show()
 
