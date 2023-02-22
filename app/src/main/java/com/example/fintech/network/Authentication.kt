@@ -21,12 +21,12 @@ interface Authentication {
     @POST("auth/verify/otp")
     suspend fun otpVerification(
         @Body verifyOtpDO: VerifyOtpDO
-    ): Response<LoginOtpResponseDO>
+    ): Response<OtpVerifiedResponseDO>
 
     @POST("auth/logout")
     suspend fun logout(
         @Header("Cookies") cookies: String
-    ): Response<LoginOtpResponseDO>
+    ): Response<LogoutDO>
 
 
 }
