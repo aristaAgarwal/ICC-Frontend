@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="146dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/black">
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:src="@drawable/product_image"/>
-</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="MPL Sports"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/poppins_semibold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Official Team India Fan Jersey - Virat Kohli (L)"
+        android:layout_marginTop="5dp"
+        android:textAppearance="@style/sub_text"
+        android:fontFamily="@font/poppins"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </LinearLayout>
+
+</LinearLayout>
