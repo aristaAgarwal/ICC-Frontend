@@ -88,13 +88,11 @@ class LoginActivity : AppCompatActivity() {
             val account = completedTask.getResult(ApiException::class.java)
             var id: String? = account.idToken
             Log.e("idToken: ", id.toString())
-
             val idToken = IdToken(id!!)
-            id = null
-            Log.e("apiIdToken", idToken.toString())
             mainViewModel.authenticate(idToken)
             mainViewModel.apiCaller.observe(this) {
                 if (it != null) {
+                    AppPreferences(this).idToken = id
                     AppPreferences(this).cookies = mainViewModel.cookies
                     updateUI(account)
                 }
