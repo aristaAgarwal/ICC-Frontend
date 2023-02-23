@@ -22,14 +22,26 @@
         android:layout_height="match_parent"
         android:text="Official Team India Fan Jersey - Virat Kohli (L)"
         android:layout_marginTop="5dp"
-        android:textAppearance="@style/sub_text"
-        android:fontFamily="@font/poppins"/>
+        android:textAppearance="@style/sub_text"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="₹1,999"
+            android:layout_marginEnd="4dp"
+            android:textAppearance="@style/sub_text"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="₹1,699"
+            android:fontFamily="@font/poppins_semibold"/>
     </LinearLayout>
 
 </LinearLayout>
