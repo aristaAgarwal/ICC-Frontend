@@ -22,12 +22,16 @@ import com.google.android.gms.common.api.ApiException
 class FetchNumber : Fragment(), PhoneCommunicator {
 
     var binding: FragmentFetchNumberBinding? = null
+    var phoneNumber: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentFetchNumberBinding.inflate(inflater, container, false)
+        binding?.submitNo?.setOnClickListener {
+            getOtp()
+        }
         return binding!!.root
     }
 
@@ -42,13 +46,10 @@ class FetchNumber : Fragment(), PhoneCommunicator {
         val phoneNumberHintIntentResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
                 try {
-                    val phoneNumber = Identity.getSignInClient(requireContext())
+                    phoneNumber = Identity.getSignInClient(requireContext())
                         .getPhoneNumberFromIntent(result.data)
                     binding?.phoneNumber?.setText(phoneNumber)
-                    binding?.submitNo?.setOnClickListener {
-                        getOtp()
-                    }
-                    Log.e("phone number", phoneNumber)
+                    Log.e("phone number", phoneNumber!!)
                 } catch (e: Exception) {
                     Log.e("Login Activity phn", "Phone Number Hint failed")
                 }
@@ -74,27 +75,27 @@ class FetchNumber : Fragment(), PhoneCommunicator {
 
         val mainViewModel by viewModels<MainViewModel>()
         try {
-            val phoneNumber: String = binding?.phoneNumber?.text.toString().takeLast(10)
-            Log.e("phone OtpFetch: ", phoneNumber)
-
-            val phone = Phone(phoneNumber)
+            phoneNumber = binding?.phoneNumber?.text.toString().takeLast(10)
+            Log.e("phone OtpFetch: ", phoneNumber!!)
+            val phone = Phone(phoneNumber!!)
             mainViewModel.otpAuthentication(phone)
             mainViewModel.apiCaller.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    passPhone(binding?.phoneNumber?.text.toString())
-                }
+
+                passPhone(phoneNumber!!)
             }
 
         } catch (e: ApiException) {
             Log.w("exp handleSignIn", "signInResult:failed code=" + e.statusCode)
         }
     }
-    override fun passPhone(editTextInput: String) {
+    override fun passPhone(phnNumber: String) {
         val bundle = Bundle()
-        bundle.putString("inputText", editTextInput)
+        bundle.putString("inputText", phnNumber)
+        Log.e("editTextInput", phnNumber)
         val transaction = parentFragmentManager.beginTransaction()
-        OtpFetch().arguments = bundle
-        transaction.replace(R.id.frameLayout, OtpFetch())
+        val fragment = OtpFetch()
+        fragment.arguments = bundle
+        transaction.replace(R.id.frameLayout, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }

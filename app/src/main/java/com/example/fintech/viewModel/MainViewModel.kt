@@ -40,7 +40,7 @@ class MainViewModel : ViewModel() {
             try {
                 val result = otpApi.otpAuthentication(phone)
                _apiCaller.postValue(result.body())
-                Log.e("mainViewModel", "otpAuthentication Successful")
+                Log.e("mainViewModel", "otp sent Successfully")
             } catch (e: Exception) {
                 Log.e("mainViewModel", "Error with otpAuthentication")
                 Log.e("mainViewModel", e.toString())
@@ -54,10 +54,6 @@ class MainViewModel : ViewModel() {
                 val result = verifyOtpApi.otpVerification(verifyOtpDO)
                 _apiCaller.postValue(result.body())
                 cookies = result.headers()["Set-Cookie"].toString().substringAfter("=").substringBefore("; ")
-                val bodyContent = result.body()
-                Log.e("OtpSignInCookie", cookies!!)
-                Log.e("VerifyOtpBody", bodyContent.toString())
-                Log.e("mainViewModel", "otpVerification Successful")
             } catch (e: Exception) {
                 Log.e("mainViewModel", "Error with otpAuthentication")
                 Log.e("mainViewModel", e.toString())

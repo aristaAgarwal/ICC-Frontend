@@ -21,13 +21,14 @@ import com.google.android.gms.common.api.ApiException
 class OtpFetch : Fragment() {
 
     var binding: FragmentOtpFetchBinding? = null
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "LongLogTag")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentOtpFetchBinding.inflate(inflater, container, false)
+        arguments?.getString("inputText")?.let { Log.e("Fetch Otp Phone Input Pass", it) }
         binding?.phoneNo?.text = arguments?.getString("inputText")
         binding?.signInButton?.setOnClickListener {
             authenticate()
@@ -40,6 +41,8 @@ class OtpFetch : Fragment() {
         try {
             val phoneNumber: String = binding?.phoneNo?.text.toString().takeLast(10)
             val otpText: String = binding?.otp?.text.toString()
+            Log.e("Phone OtpFetch", phoneNumber)
+            Log.e("Otp OtpFetch", otpText)
 
             val verifyOtpDO = VerifyOtpDO(phoneNumber, otpText)
             mainViewModel.otpVerification(verifyOtpDO)
@@ -48,6 +51,7 @@ class OtpFetch : Fragment() {
                     AppPreferences(context).cookies = mainViewModel.cookies
                     val intent = Intent(activity, MainActivity::class.java)
                     startActivity(intent)
+                    activity?.finish()
                 }
             }
             // Signed in successfully, show authenticated UI.
