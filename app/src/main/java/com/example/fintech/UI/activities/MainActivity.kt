@@ -6,8 +6,13 @@ import android.util.Log
 import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.fintech.BuildConfig
 import com.example.fintech.R
+import com.example.fintech.UI.fragments.EngageFragment
+import com.example.fintech.UI.fragments.HomeFragment
+import com.example.fintech.UI.fragments.ShopFragment
+import com.example.fintech.UI.fragments.StatsFragment
 import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.ActivityMainBinding
 import com.example.fintech.viewModel.MainViewModel
@@ -22,6 +27,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.bottomNavigationView.itemIconTintList = null
+        setCurrentFragment(HomeFragment())
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.home->setCurrentFragment(HomeFragment())
+                R.id.shop->setCurrentFragment(ShopFragment())
+                R.id.engage->setCurrentFragment(EngageFragment())
+                R.id.stats->setCurrentFragment(StatsFragment())
+            }
+            true
+        }
+
 
         if (AppPreferences(this).cookies == null) {
             val intent = Intent(this, LoginActivity::class.java)
@@ -54,4 +72,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun setCurrentFragment(fragment: Fragment)=
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.flFragment,fragment)
+            commit()
+        }
 }
