@@ -4,6 +4,7 @@
     android:layout_width="146dp"
     android:layout_height="wrap_content"
     android:background="@color/black"
+    android:layout_marginBottom="20dp"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -28,18 +29,23 @@
         android:textColor="@color/white" />
 
     <TextView
+        android:id="@+id/product_description"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:singleLine="true"
         android:text="@string/product_discription"
         android:textAppearance="@style/sub_text" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/mrp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
@@ -48,6 +54,7 @@
             android:textColor="@color/white" />
 
         <TextView
+            android:id="@+id/discounted_mrp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
@@ -55,6 +62,7 @@
             android:textColor="@color/white" />
 
         <TextView
+            android:id="@+id/discount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -62,13 +70,13 @@
             android:text="@string/_10"
             android:textColor="#D46868"
             android:textSize="8sp" />
-
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
         <androidx.cardview.widget.CardView
-            android:id="@+id/phn_no_cv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginStart="5dp"
             app:cardCornerRadius="16dp">
 
             <TextView
@@ -77,6 +85,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="2dp"
+                android:layout_gravity="center"
                 android:text="@string/add"
                 android:textColor="#0D0D14"
                 android:textSize="10sp" />

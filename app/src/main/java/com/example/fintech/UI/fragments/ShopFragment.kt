@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fintech.adapter.ProductCardAdapter
 import com.example.fintech.databinding.FragmentShopBinding
@@ -40,7 +41,7 @@ class ShopFragment : Fragment(), ProductCardAdapter.AppLinkClick {
 
     fun setProductsAdapter(data: AllProductsDO) {
         Log.e("shopActivity", "In here")
-        val layoutManager = LinearLayoutManager(requireContext())
+        val layoutManager = GridLayoutManager(requireContext(),2)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding?.productsRv?.layoutManager = layoutManager
         binding?.productsRv?.adapter?.notifyDataSetChanged()

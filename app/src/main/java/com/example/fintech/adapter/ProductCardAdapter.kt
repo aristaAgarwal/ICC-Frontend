@@ -1,6 +1,7 @@
 package com.example.fintech.adapter
 
 import android.content.Context
+import android.graphics.Paint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -24,11 +25,18 @@ class ProductCardAdapter(
         private var view: View = v
         val image = view.findViewById<ImageView>(R.id.product_image)
         var title = view.findViewById<TextView>(R.id.product_title)
+        var description = view.findViewById<TextView>(R.id.product_description)
+        var mrp = view.findViewById<TextView>(R.id.mrp)
+        var discountedMrp = view.findViewById<TextView>(R.id.discounted_mrp)
+        var discount = view.findViewById<TextView>(R.id.discount)
         fun bindItem(product: Product) {
 //            image = product.display_image
-
-            Log.e("in Adapter", product.toString())
+            Log.e("in Adapter", product.description.toString())
             title.text = product.name
+            description.text = product.description
+            mrp.text = product.price.toString()
+            mrp.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            discountedMrp.text = product.discount.toString()
 
         }
     }
@@ -39,8 +47,6 @@ class ProductCardAdapter(
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.product_card_layout,
             parent, false)
-
-        Log.e("in Adapter", allProductsDO.toString())
         this.context = parent.context
         return RACItemHolder(view)
     }

@@ -2,6 +2,7 @@ package com.example.fintech.UI.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.fintech.R
@@ -31,7 +32,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
 
         if (AppPreferences(this).cookies == null) {
             val intent = Intent(this, LoginActivity::class.java)

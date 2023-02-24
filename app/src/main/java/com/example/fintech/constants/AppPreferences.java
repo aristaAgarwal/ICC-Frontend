@@ -48,9 +48,9 @@ public class AppPreferences {
     }
 
     public String getCookies() {
-        String cookies = "";
+        String cookies = null;
         try {
-            cookies = sharedPrefs.getString(PreferenceNames.COOKIES, "");
+            cookies = sharedPrefs.getString(PreferenceNames.COOKIES, null);
         } catch (Exception ex) {
         }
         return cookies;
