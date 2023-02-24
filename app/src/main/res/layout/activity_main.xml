@@ -7,22 +7,12 @@
     tools:context=".UI.activities.MainActivity"
     android:background="@color/black">
 
-    <TextView
-        android:id="@+id/welocome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="WELCOME TO HOME ACTIVITY"
-        android:textColor="@color/white"
-        android:layout_centerInParent="true"
-        android:textStyle="bold"/>
-
     <Button
         android:id="@+id/sign_out_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign out"
+        android:text="@string/sign_out"
         android:textColor="@color/black"
-        android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
