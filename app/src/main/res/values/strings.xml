@@ -16,4 +16,8 @@
     <string name="_1_999"><strike>₹1,999</strike></string>
     <string name="welcome_to_home_activity">WELCOME TO HOME ACTIVITY</string>
     <string name="sign_out">Sign out</string>
+    <string name="home">Home</string>
+    <string name="shop">Shop</string>
+    <string name="engage">Engage</string>
+    <string name="stats">Stats</string>
 </resources>
