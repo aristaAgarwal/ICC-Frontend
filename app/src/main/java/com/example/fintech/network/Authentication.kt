@@ -11,22 +11,22 @@ interface Authentication {
     @POST("auth/google/callback")
     suspend fun authentication(
         @Body idToken: IdToken
-    ): Response<AuthenticationDO>
+    ): Response<BaseResponseDO>
 
     @POST("auth/send/otp")
     suspend fun otpAuthentication(
         @Body phone: Phone
-    ): Response<AuthenticationDO>
+    ): Response<BaseResponseDO>
 
     @POST("auth/verify/otp")
     suspend fun otpVerification(
         @Body verifyOtpDO: VerifyOtpDO
-    ): Response<AuthenticationDO>
+    ): Response<BaseResponseDO>
 
     @POST("auth/logout")
     suspend fun logout(
         @Header("Cookies") cookies: String
-    ): Response<AuthenticationDO>
+    ): Response<BaseResponseDO>
 
 
 }
