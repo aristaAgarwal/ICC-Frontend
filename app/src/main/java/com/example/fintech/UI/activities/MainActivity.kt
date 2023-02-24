@@ -30,8 +30,16 @@ class MainActivity : AppCompatActivity() {
         } else {
             signOut()
         }
+        init()
     }
 
+    fun init(){
+        binding.shop.setOnClickListener {
+            val intent = Intent(this, ShopActivity::class.java)
+            startActivity(intent)
+            this.finish()
+        }
+    }
     private fun signOut() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(BuildConfig.CLIENT_ID).requestEmail().build()

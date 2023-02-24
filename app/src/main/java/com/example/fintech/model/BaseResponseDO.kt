@@ -1,6 +1,6 @@
 package com.example.fintech.model
 
-data class AuthenticationDO(
+data class BaseResponseDO(
     val code: Int,
     val data: Any,
     val message: Any,
