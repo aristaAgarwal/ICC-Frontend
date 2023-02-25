@@ -48,12 +48,28 @@ public class AppPreferences {
     }
 
     public String getCookies() {
-        String cookies = "";
+        String cookies = null;
         try {
-            cookies = sharedPrefs.getString(PreferenceNames.COOKIES, "");
+            cookies = sharedPrefs.getString(PreferenceNames.COOKIES, null);
         } catch (Exception ex) {
         }
         return cookies;
+    }
+
+
+    public void setIdToken(String cookies) {
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString(PreferenceNames.ID_TOKEN, cookies);
+        editor.commit();
+    }
+
+    public String getIdToken() {
+        String idToken = "";
+        try {
+            idToken = sharedPrefs.getString(PreferenceNames.ID_TOKEN, "");
+        } catch (Exception ex) {
+        }
+        return idToken;
     }
 
     static class PreferenceNames {
@@ -64,6 +80,7 @@ public class AppPreferences {
 
         private static final String EMAIL_ID = "EMAIL_ID";
         private static final String COOKIES = "COOKIES";
+        private static final String ID_TOKEN = "ID_TOKEN";
         private static final String USER_NAME = "USER_NAME";
         private static final String APP_SHARED_PREFS = "com.example.fintech";
     }

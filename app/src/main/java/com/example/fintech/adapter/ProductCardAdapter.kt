@@ -1,0 +1,61 @@
+package com.example.fintech.adapter
+
+import android.content.Context
+import android.graphics.Paint
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.fintech.R
+import com.example.fintech.model.AllProductsDO
+import com.example.fintech.model.Product
+
+class ProductCardAdapter(
+    var context: Context,
+    var allProductsDO: AllProductsDO,
+    var appLinkListener: AppLinkClick
+    ) :
+    RecyclerView.Adapter<ProductCardAdapter.RACItemHolder>()  {
+
+
+    inner class RACItemHolder(v: View): RecyclerView.ViewHolder(v) {
+        private var view: View = v
+        val image = view.findViewById<ImageView>(R.id.product_image)
+        var title = view.findViewById<TextView>(R.id.product_title)
+        var description = view.findViewById<TextView>(R.id.product_description)
+        var mrp = view.findViewById<TextView>(R.id.mrp)
+        var discountedMrp = view.findViewById<TextView>(R.id.discounted_mrp)
+        var discount = view.findViewById<TextView>(R.id.discount)
+        fun bindItem(product: Product) {
+//            image = product.display_image
+            Log.e("in Adapter", product.description.toString())
+            title.text = product.name
+            description.text = product.description
+            mrp.text = product.price.toString()
+            mrp.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            discountedMrp.text = product.discount.toString()
+
+        }
+    }
+
+    override fun getItemCount(): Int = allProductsDO.size
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RACItemHolder {
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.product_card_layout,
+            parent, false)
+        this.context = parent.context
+        return RACItemHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: RACItemHolder, position: Int) {
+        holder.bindItem(allProductsDO[position])
+    }
+
+    interface AppLinkClick {
+        fun onAppLinkClicked(id: String, date: String)
+    }
+}

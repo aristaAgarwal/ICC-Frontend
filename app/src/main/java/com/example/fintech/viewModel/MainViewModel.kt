@@ -13,13 +13,18 @@ class MainViewModel : ViewModel() {
     var cookies: String? = null
 
     var api = RetrofitService().authentication
-    var _apiCaller = MutableLiveData<AuthenticationDO>()
-    val apiCaller: LiveData<AuthenticationDO>
+    var _apiCaller = MutableLiveData<BaseResponseDO>()
+    val apiCaller: LiveData<BaseResponseDO>
         get() = _apiCaller
+
+    var _productApiCaller = MutableLiveData<ProductsDO>()
+    val productApiCaller: LiveData<ProductsDO>
+        get() = _productApiCaller
 
     var otpApi = RetrofitService().otpAuthentication
     var verifyOtpApi = RetrofitService().otpVerification
     var logoutApi = RetrofitService().logout
+    var allProducts = RetrofitService().products
 
     fun authenticate(idToken: IdToken) {
         viewModelScope.launch {
@@ -70,6 +75,18 @@ class MainViewModel : ViewModel() {
             } catch (e: Exception) {
                 Log.e("mainViewModel", "Error with logout")
                 Log.e("mainViewModel", e.toString())
+            }
+        }
+    }
+
+    fun getProducts(){
+        viewModelScope.launch {
+            try {
+                val result = allProducts.getAllProducts()
+                _productApiCaller.postValue(result.body())
+                Log.e("mainViewModel", "fetched all products successfully")
+            } catch (e:Exception){
+                Log.e("mainViewModel", "error with fetching all products")
             }
         }
     }
