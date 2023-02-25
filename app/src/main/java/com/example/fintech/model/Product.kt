@@ -14,7 +14,7 @@ data class Product(
     val price: Int,
     val published: Boolean,
     val quantity: Int,
-    val ratings: Int,
+    val ratings: Float,
     val sizes: List<String>,
     val updated_at: Double,
     val user_id: String,

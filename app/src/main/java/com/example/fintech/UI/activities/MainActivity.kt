@@ -65,11 +65,11 @@ class MainActivity : AppCompatActivity() {
         val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
         binding.navigationView.menu.findItem(R.id.nav_logout).setOnMenuItemClickListener {
-            AppPreferences(this).cookies = null
             val mainViewModel by viewModels<MainViewModel>()
             mainViewModel.logout(AppPreferences(this).cookies)
             mainViewModel.apiCaller.observe(this) {
                 if (it != null) {
+                    AppPreferences(this).cookies = null
                     Log.e("MainActivity", "logout")
                     mGoogleSignInClient.signOut().addOnCompleteListener(this) {
                         val intent = Intent(this, LoginActivity::class.java)
