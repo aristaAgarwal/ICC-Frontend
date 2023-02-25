@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.view.GravityCompat
-import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.fintech.BuildConfig
@@ -81,22 +80,6 @@ class MainActivity : AppCompatActivity() {
             }
             false
         }
-
-//        binding.signOutButton.setOnClickListener {
-//            AppPreferences(this).cookies = null
-//            val mainViewModel by viewModels<MainViewModel>()
-//            mainViewModel.logout(AppPreferences(this).cookies)
-//            mainViewModel.apiCaller.observe(this) {
-//                if (it != null) {
-//                    Log.e("MainActivity", "logout")
-//                    mGoogleSignInClient.signOut().addOnCompleteListener(this) {
-//                        val intent = Intent(this, LoginActivity::class.java)
-//                        startActivity(intent)
-//                        this.finish()
-//                    }
-//                }
-//            }
-//        }
     }
 
     private fun setCurrentFragment(fragment: Fragment) =
