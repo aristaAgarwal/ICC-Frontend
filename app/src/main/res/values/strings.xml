@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Fintech</string>
-    <string name="server_client_id">146947182520-ocr0fhthouqnaq37bgtkqnrck89cjqpd.apps.googleusercontent.com</string>
     <string name="login_with_google">Login with Google</string>
     <string name="login_with_phone_number">Login with Phone number</string>
     <string name="enter_phone_number">Enter Phone Number</string>
@@ -24,4 +23,12 @@
     <string name="_10">-10%</string>
     <string name="mpl_sports">MPL Sports</string>
     <string name="product_discription">Official Team India Fan Jersey - Virat Kohli (L)</string>
+    <string name="welcome">Welcome!</string>
+    <string name="we_are_so_delighted_you_re_here">We are so delighted\nyou\'re here</string>
+    <string name="collect_100_coins_on_entering_the_referral_code">Collect 100 coins on entering\nthe referral code</string>
+    <string name="continue_button">Continue</string>
+    <string name="skip">skip</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="you_just_earned_100_coins_through_a_referral">You just earned 100 coins through\na referral.</string>
+    <string name="enter_referral_code">Enter referral code</string>
 </resources>
