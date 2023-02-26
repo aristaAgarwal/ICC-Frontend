@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,7 @@ class ProductCardAdapter(
 
     inner class RACItemHolder(v: View) : RecyclerView.ViewHolder(v) {
         private var view: View = v
+        val product_layout = view.findViewById<LinearLayout>(R.id.product)
         val image = view.findViewById<ImageView>(R.id.product_image)
         var title = view.findViewById<TextView>(R.id.product_title)
         var description = view.findViewById<TextView>(R.id.product_description)
@@ -42,6 +44,9 @@ class ProductCardAdapter(
             discountedMrp.text = product.discount.toString()
 
             loadImage(product.display_image, image)
+            product_layout.setOnClickListener{
+                appLinkListener.onAppLinkClicked(product)
+            }
         }
     }
 
@@ -72,6 +77,6 @@ class ProductCardAdapter(
     }
 
     interface AppLinkClick {
-        fun onAppLinkClicked(id: String, date: String)
+        fun onAppLinkClicked(product: Product)
     }
 }
