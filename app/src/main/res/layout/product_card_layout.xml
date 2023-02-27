@@ -36,7 +36,7 @@
         android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:singleLine="true"
-        android:text="@string/product_discription"
+        android:text="@string/product_description"
         android:textAppearance="@style/sub_text" />
 
     <LinearLayout

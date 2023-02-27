@@ -42,6 +42,7 @@ class ProductCardAdapter(
             mrp.text = product.price.toString()
             mrp.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             discountedMrp.text = product.discount.toString()
+            description.isSingleLine = true
 
             loadImage(product.display_image, image)
             product_layout.setOnClickListener{
