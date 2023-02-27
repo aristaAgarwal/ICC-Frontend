@@ -1,16 +1,13 @@
 package com.example.fintech.UI.activities
 
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import androidx.annotation.Nullable
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
+import android.util.Log
+import android.widget.TextView
+import com.example.fintech.R
 import com.example.fintech.databinding.ActivityProductBinding
 import com.example.fintech.model.Product
+import com.ms.square.android.expandabletextview.ExpandableTextView
 
 class ProductActivity : AppCompatActivity() {
     lateinit var binding: ActivityProductBinding
@@ -38,5 +35,8 @@ class ProductActivity : AppCompatActivity() {
 
             override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
         })
+        Log.e("product Description",product.description)
+        val editTV = binding.expandTextView
+        editTV.setText("Description"+"\n\n"+product.description)
     }
 }
