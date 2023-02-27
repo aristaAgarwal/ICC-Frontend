@@ -1,7 +1,5 @@
 package com.example.fintech.model
 
-import android.os.Parcelable
-
 data class Product(
     val _id: String,
     val created_at: Double,

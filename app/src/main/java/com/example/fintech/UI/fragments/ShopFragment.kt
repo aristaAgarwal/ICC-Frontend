@@ -17,7 +17,7 @@ import com.example.fintech.model.AllProductsDO
 import com.example.fintech.model.Product
 import com.example.fintech.viewModel.MainViewModel
 
-class ShopFragment : Fragment(), ProductCardAdapter.AppLinkClick {
+class ShopFragment : Fragment(), ProductCardAdapter.AppLinkClick, java.io.Serializable {
 
     var binding: FragmentShopBinding? = null
 
@@ -52,7 +52,7 @@ class ShopFragment : Fragment(), ProductCardAdapter.AppLinkClick {
     }
     override fun onAppLinkClicked(product: Product) {
         val intent = Intent(context, ProductActivity::class.java)
-
+        intent.putExtra("product",product)
         startActivity(intent)
     }
 }
