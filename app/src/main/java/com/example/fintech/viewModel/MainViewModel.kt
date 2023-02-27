@@ -13,11 +13,11 @@ class MainViewModel : ViewModel() {
     var cookies: String? = null
 
     var api = RetrofitService().authentication
-    var _apiCaller = MutableLiveData<BaseResponseDO>()
+    private var _apiCaller = MutableLiveData<BaseResponseDO>()
     val apiCaller: LiveData<BaseResponseDO>
         get() = _apiCaller
 
-    var _productApiCaller = MutableLiveData<ProductsDO>()
+    private var _productApiCaller = MutableLiveData<ProductsDO>()
     val productApiCaller: LiveData<ProductsDO>
         get() = _productApiCaller
 
@@ -87,6 +87,7 @@ class MainViewModel : ViewModel() {
                 Log.e("mainViewModel", "fetched all products successfully")
             } catch (e:Exception){
                 Log.e("mainViewModel", "error with fetching all products")
+                Log.e("getProducts",e.toString())
             }
         }
     }

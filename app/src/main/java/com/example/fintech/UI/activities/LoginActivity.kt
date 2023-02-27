@@ -15,6 +15,7 @@ import com.example.fintech.R
 import com.example.fintech.UI.fragments.FetchNumber
 import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.ActivityLoginBinding
+import com.example.fintech.model.Data
 import com.example.fintech.viewModel.MainViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -92,6 +93,8 @@ class LoginActivity : AppCompatActivity() {
             mainViewModel.authenticate(idToken)
             mainViewModel.apiCaller.observe(this) {
                 if (it != null) {
+                    Log.e("loginActivity", it.data.toString().contains("name").toString())
+                    Log.e("loginActivity", it.data.toString().substringAfter("name=").substringBefore(","))
                     AppPreferences(this).idToken = id
                     AppPreferences(this).cookies = mainViewModel.cookies
                     updateUI(account)
