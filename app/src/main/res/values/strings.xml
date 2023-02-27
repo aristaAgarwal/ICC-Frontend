@@ -28,4 +28,10 @@
     <string name="_91_reviews">(91 reviews)</string>
     <string name="size_l">Size: L</string>
     <string name="sample">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="product_discription">Official Team India Fan Jersey - Virat Kohli (L)</string>
+    <string name="upcoming_matches">Upcoming Matches</string>
+    <string name="recent_matches">Recent Matches</string>
+    <string name="today_s_match_highlights">Today’s Match Highlights</string>
+    <string name="australia_tour_of_india_2023">Australia Tour of India 2023</string>
+    <string name="popular_in_cricket">Popular in Cricket</string>
 </resources>
