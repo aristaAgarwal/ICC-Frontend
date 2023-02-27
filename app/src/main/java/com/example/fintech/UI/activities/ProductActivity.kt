@@ -4,7 +4,6 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import androidx.annotation.Nullable
 import com.bumptech.glide.Glide
@@ -27,11 +26,8 @@ class ProductActivity : AppCompatActivity() {
         loadImage(product.display_image, binding.productImage)
         binding.productTitle.text = product.name
         binding.productDescription.text = product.description
-        Log.e("product Description",product.description)
-        val editTV = binding.expandTextView
-        editTV.setText("Description"+"\n\n"+product.description)
+        binding.expandTextView.setText("Description"+"\n\n"+product.description)
     }
-
 
     fun loadImage(imageUrl: String, imageView: ImageView) {
         Glide.with(this).asBitmap().load(imageUrl).into(object : CustomTarget<Bitmap?>() {
@@ -43,6 +39,5 @@ class ProductActivity : AppCompatActivity() {
 
             override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
         })
-
     }
 }
