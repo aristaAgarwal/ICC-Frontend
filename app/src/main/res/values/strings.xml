@@ -24,4 +24,6 @@
     <string name="_10">-10%</string>
     <string name="mpl_sports">MPL Sports</string>
     <string name="product_discription">Official Team India Fan Jersey - Virat Kohli (L)</string>
+    <string name="upcoming_matches">Upcoming Matches</string>
+    <string name="recent_matches">Recent Matches</string>
 </resources>
