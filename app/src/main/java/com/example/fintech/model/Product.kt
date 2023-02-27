@@ -1,5 +1,7 @@
 package com.example.fintech.model
 
+import android.os.Parcelable
+
 data class Product(
     val _id: String,
     val created_at: Double,
@@ -19,4 +21,4 @@ data class Product(
     val updated_at: Double,
     val user_id: String,
     val uuid: String
-)
+): java.io.Serializable

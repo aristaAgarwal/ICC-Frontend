@@ -52,7 +52,7 @@ class ShopFragment : Fragment(), ProductCardAdapter.AppLinkClick {
     }
     override fun onAppLinkClicked(product: Product) {
         val intent = Intent(context, ProductActivity::class.java)
+
         startActivity(intent)
-        activity?.finish()
     }
 }
