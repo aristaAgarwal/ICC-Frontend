@@ -19,11 +19,12 @@ import com.example.fintech.adapter.ProductCardAdapter
 import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.ActivityCartBinding
 import com.example.fintech.model.AddCartData
+import com.example.fintech.model.AddProductToCart
 import com.example.fintech.model.Product
 import com.example.fintech.viewModel.MainViewModel
 import java.io.Serializable
 
-class CartActivity : AppCompatActivity() {
+class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
     lateinit var binding: ActivityCartBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,17 +42,12 @@ class CartActivity : AppCompatActivity() {
 
     fun getAllProducts() {
         val mainViewModel by viewModels<MainViewModel>()
-        Log.e("cartActivity", "fetching kr rhe hai")
         mainViewModel.getAllProducts(AppPreferences(this).cookies)
         mainViewModel.addProductApiCaller.observe(
             this
         ) {
-
-            Log.e("cartActivity", "fetch ho gya")
             if (it != null) {
-                addCartItem(it.data.products)
-
-                Log.e("cartActivity", "fetch ho gya sahi hai data")
+                if (it.data != null) addCartItem(it.data.products)
             }
         }
     }
@@ -60,7 +56,21 @@ class CartActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.CartRv.layoutManager = layoutManager
-        binding.CartRv.adapter = CartItemAdapter(this, product)
+        binding.CartRv.adapter = CartItemAdapter(this, product, this)
+    }
+
+    override fun onAppLinkClicked(uuid: String, size: String) {
+        val mainViewModel by viewModels<MainViewModel>()
+        val product = AddProductToCart(uuid, size)
+        mainViewModel.removeProduct(product, AppPreferences(this).cookies)
+        mainViewModel.addProductApiCaller.observe(
+            this
+        ) {
+            if (it != null) {
+                if (it.data != null) Log.e("CartActivity", it.data.toString())
+            }
+        }
+
     }
 
 }

@@ -8,4 +8,5 @@ class RetrofitService {
     var products = RetrofitBuilder.getInstance().create(GetAllProducts::class.java)
     var addProduct = RetrofitBuilder.getInstance().create(CartProduct::class.java)
     var getAllProduct = RetrofitBuilder.getInstance().create(CartProduct::class.java)
+    var removeProduct = RetrofitBuilder.getInstance().create(CartProduct::class.java)
 }

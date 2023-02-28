@@ -34,6 +34,7 @@ class MainViewModel : ViewModel() {
     var allProducts = RetrofitService().products
     var addProduct = RetrofitService().addProduct
     var allProduct = RetrofitService().getAllProduct
+    var removeProduct = RetrofitService().removeProduct
 
     fun authenticate(idToken: IdToken) {
         viewModelScope.launch {
@@ -122,6 +123,20 @@ class MainViewModel : ViewModel() {
                 Log.e("mainViewModel", "cart product fetched successfully")
             } catch (e:Exception){
                 Log.e("mainViewModel", "error with fetching product")
+                Log.e("addProducts",e.toString())
+            }
+        }
+    }
+
+    fun removeProduct(product: AddProductToCart, cookie: String){
+        viewModelScope.launch {
+            try {
+                val result = removeProduct.removeProduct(product,cookie)
+                _addProductApiCaller.postValue(result.body())
+                Log.e("RemoveProduct MVVM", "removed -> ${result.body()?.message}")
+            } catch (e:Exception){
+
+                Log.e("mainViewModel", "error with removing product")
                 Log.e("addProducts",e.toString())
             }
         }

@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
@@ -20,6 +19,7 @@ import com.example.fintech.model.Product
 class CartItemAdapter(
     var context: Context,
     var product: List<Product>,
+    var onAppLinkClick: AppLinkClick
 ) : RecyclerView.Adapter<CartItemAdapter.RACItemHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -41,6 +41,7 @@ class CartItemAdapter(
         var description = view.findViewById<TextView>(R.id.product_description)
         var mrp = view.findViewById<TextView>(R.id.mrp)
         var discountedMrp = view.findViewById<TextView>(R.id.discounted_mrp)
+        var delete = view.findViewById<ImageView>(R.id.delete)
         fun bindItem(product: Product) {
 
             loadImage(product.display_image, image)
@@ -50,6 +51,10 @@ class CartItemAdapter(
             mrp.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             discountedMrp.text = product.discount.toString()
             description.isSingleLine = true
+            delete.setOnClickListener{
+
+                onAppLinkClick.onAppLinkClicked(product.uuid, product.sizes[0])
+            }
         }
     }
 
@@ -67,5 +72,9 @@ class CartItemAdapter(
 
     override fun onBindViewHolder(holder: RACItemHolder, position: Int) {
         holder.bindItem(product[position])
+    }
+
+    interface AppLinkClick {
+        fun onAppLinkClicked(uuid: String, s1: String)
     }
 }

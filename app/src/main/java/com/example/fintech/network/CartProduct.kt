@@ -20,4 +20,10 @@ interface CartProduct {
     suspend fun getAllProduct(
         @Header("Cookie") cookies: String
     ): Response<CartDO>
+
+    @POST("cart/remove")
+    suspend fun removeProduct(
+        @Body removeProduct: AddProductToCart,
+        @Header("Cookie") cookies: String
+    ): Response<CartDO>
 }
