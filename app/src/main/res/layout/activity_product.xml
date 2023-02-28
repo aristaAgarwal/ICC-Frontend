@@ -10,6 +10,7 @@
     android:orientation="vertical"
     tools:context=".UI.activities.ProductActivity">
 
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
@@ -345,22 +346,22 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:text="@string/description"
                                     android:fontFamily="@font/poppins_regular"
+                                    android:text="@string/description"
                                     android:textColor="@color/white"
                                     android:textSize="12sp" />
 
                                 <Space
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="1"/>
+                                    android:layout_weight="1" />
 
                                 <ImageButton
                                     android:id="@id/expand_collapse"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="16dp"
-                                    android:background="#00000000"/>
+                                    android:background="#00000000"
+                                    android:padding="16dp" />
 
                             </LinearLayout>
 
@@ -376,8 +377,26 @@
                     </RelativeLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/add_to_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="58dp"
+                app:cardCornerRadius="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingVertical="10dp"
+                    android:text="Go to cart"
+                    android:textAppearance="@style/dark_text" />
+            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
 
     </ScrollView>
-
 </LinearLayout>

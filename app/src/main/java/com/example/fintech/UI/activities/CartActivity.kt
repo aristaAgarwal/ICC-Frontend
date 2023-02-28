@@ -15,8 +15,14 @@ class CartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        init()
     }
 
+    fun init(){
+        binding.back.setOnClickListener{
+            this.finish()
+        }
+    }
     fun addToCart(productId: String, size: String){
         val mainViewModel by viewModels<MainViewModel>()
         val product = AddProductToCart(productId, size)
