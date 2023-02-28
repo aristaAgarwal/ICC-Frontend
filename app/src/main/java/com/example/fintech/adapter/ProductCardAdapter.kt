@@ -12,16 +12,18 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.Nullable
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.fintech.R
-import com.example.fintech.model.AllProductsDO
 import com.example.fintech.model.Product
 
 class ProductCardAdapter(
-    var context: Context, var allProductsDO: AllProductsDO, var appLinkListener: AppLinkClick
+    var context: Context,
+    var allProductsDO: List<Product>,
+    var appLinkListener: AppLinkClick
 ) : RecyclerView.Adapter<ProductCardAdapter.RACItemHolder>() {
 
 
@@ -34,6 +36,7 @@ class ProductCardAdapter(
         var mrp = view.findViewById<TextView>(R.id.mrp)
         var discountedMrp = view.findViewById<TextView>(R.id.discounted_mrp)
         var discount = view.findViewById<TextView>(R.id.discount)
+        var addButton = view.findViewById<CardView>(R.id.add_button)
         fun bindItem(product: Product) {
 //            image = product.display_image
             Log.e("in Adapter", product.description.toString())
@@ -42,10 +45,15 @@ class ProductCardAdapter(
             mrp.text = product.price.toString()
             mrp.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             discountedMrp.text = product.discount.toString()
+            description.isSingleLine = true
 
             loadImage(product.display_image, image)
-            product_layout.setOnClickListener{
-                appLinkListener.onAppLinkClicked(product)
+            product_layout.setOnClickListener {
+                appLinkListener.onAppLinkClicked(product, "product")
+            }
+
+            addButton.setOnClickListener {
+                appLinkListener.onAppLinkClicked(product, "cart")
             }
         }
     }
@@ -77,6 +85,6 @@ class ProductCardAdapter(
     }
 
     interface AppLinkClick {
-        fun onAppLinkClicked(product: Product)
+        fun onAppLinkClicked(product: Product, layout: String)
     }
 }

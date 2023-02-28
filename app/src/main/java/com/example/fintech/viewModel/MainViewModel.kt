@@ -5,9 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.fintech.constants.AppPreferences
 import com.example.fintech.model.*
 import com.example.fintech.network.RetrofitService
 import kotlinx.coroutines.launch
+import okhttp3.Cookie
 
 class MainViewModel : ViewModel() {
     var cookies: String? = null
@@ -21,17 +23,22 @@ class MainViewModel : ViewModel() {
     val productApiCaller: LiveData<ProductsDO>
         get() = _productApiCaller
 
+    private var _addProductApiCaller = MutableLiveData<CartDO>()
+    val addProductApiCaller: LiveData<CartDO>
+        get() = _addProductApiCaller
+
     var otpApi = RetrofitService().otpAuthentication
     var verifyOtpApi = RetrofitService().otpVerification
     var logoutApi = RetrofitService().logout
     var allProducts = RetrofitService().products
+    var addProduct = RetrofitService().addProduct
 
     fun authenticate(idToken: IdToken) {
         viewModelScope.launch {
             try {
                 val result = api.authentication(idToken)
                 _apiCaller.postValue(result.body())
-                cookies = result.headers()["Set-Cookie"].toString().substringAfter("=").substringBefore("; ")
+                cookies = result.headers()["Set-Cookie"]
                 Log.e("GoogleSigninCookie", cookies!!)
             } catch (e: Exception) {
                 Log.e("mainViewModel", "Error with authentication")
@@ -58,7 +65,7 @@ class MainViewModel : ViewModel() {
             try {
                 val result = verifyOtpApi.otpVerification(verifyOtpDO)
                 _apiCaller.postValue(result.body())
-                cookies = result.headers()["Set-Cookie"].toString().substringAfter("=").substringBefore("; ")
+                cookies = result.headers()["Set-Cookie"]
             } catch (e: Exception) {
                 Log.e("mainViewModel", "Error with otpAuthentication")
                 Log.e("mainViewModel", e.toString())
@@ -88,6 +95,19 @@ class MainViewModel : ViewModel() {
             } catch (e:Exception){
                 Log.e("mainViewModel", "error with fetching all products")
                 Log.e("getProducts",e.toString())
+            }
+        }
+    }
+
+    fun addProducts(product: AddProductToCart, cookie: String){
+        viewModelScope.launch {
+            try {
+                val result = addProduct.postAddProduct(product, cookie)
+                _addProductApiCaller.postValue(result.body())
+                Log.e("mainViewModel", "product added successfully")
+            } catch (e:Exception){
+                Log.e("mainViewModel", "error with adding product")
+                Log.e("addProducts",e.toString())
             }
         }
     }

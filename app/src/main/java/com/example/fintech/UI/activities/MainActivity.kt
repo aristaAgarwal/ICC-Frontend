@@ -57,6 +57,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             this.finish()
         } else {
+
+            Log.e("idToken",AppPreferences(this).idToken)
             signOut()
         }
     }
