@@ -45,7 +45,7 @@
             android:layout_height="75dp"
             android:layout_alignParentBottom="true"
             android:animateLayoutChanges="false"
-            android:background="#990C0C0C"
+            android:background="@color/black"
             app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
             app:labelVisibilityMode="labeled"
