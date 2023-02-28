@@ -5,11 +5,13 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import androidx.annotation.Nullable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.ActivityProductBinding
 import com.example.fintech.model.Product
 

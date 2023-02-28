@@ -23,6 +23,10 @@ class MainViewModel : ViewModel() {
     val productApiCaller: LiveData<ProductsDO>
         get() = _productApiCaller
 
+    private var _addProductApiCaller = MutableLiveData<CartDO>()
+    val addProductApiCaller: LiveData<CartDO>
+        get() = _addProductApiCaller
+
     var otpApi = RetrofitService().otpAuthentication
     var verifyOtpApi = RetrofitService().otpVerification
     var logoutApi = RetrofitService().logout
@@ -34,8 +38,6 @@ class MainViewModel : ViewModel() {
             try {
                 val result = api.authentication(idToken)
                 _apiCaller.postValue(result.body())
-                val coo = result.headers()
-                Log.e("header", coo.toString())
                 cookies = result.headers()["Set-Cookie"]
                 Log.e("GoogleSigninCookie", cookies!!)
             } catch (e: Exception) {
@@ -63,9 +65,7 @@ class MainViewModel : ViewModel() {
             try {
                 val result = verifyOtpApi.otpVerification(verifyOtpDO)
                 _apiCaller.postValue(result.body())
-                val coo = result.headers()
-                Log.e("header", coo.toString())
-                cookies = result.headers()["Set-Cookie"].toString()
+                cookies = result.headers()["Set-Cookie"]
             } catch (e: Exception) {
                 Log.e("mainViewModel", "Error with otpAuthentication")
                 Log.e("mainViewModel", e.toString())
@@ -103,11 +103,11 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val result = addProduct.postAddProduct(product, cookie)
-                _productApiCaller.postValue(result.body())
+                _addProductApiCaller.postValue(result.body())
                 Log.e("mainViewModel", "product added successfully")
             } catch (e:Exception){
                 Log.e("mainViewModel", "error with adding product")
-                Log.e("getProducts",e.toString())
+                Log.e("addProducts",e.toString())
             }
         }
     }

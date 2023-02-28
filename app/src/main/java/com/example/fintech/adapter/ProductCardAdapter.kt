@@ -18,13 +18,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.fintech.R
-import com.example.fintech.UI.fragments.ShopFragment
-import com.example.fintech.model.AllProductsDO
 import com.example.fintech.model.Product
 
 class ProductCardAdapter(
     var context: Context,
-    var allProductsDO: AllProductsDO,
+    var allProductsDO: List<Product>,
     var appLinkListener: AppLinkClick
 ) : RecyclerView.Adapter<ProductCardAdapter.RACItemHolder>() {
 

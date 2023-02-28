@@ -1,9 +1,8 @@
 package com.example.fintech.model
 
-data class ProductsDO(
+data class CartDO(
     val code: Int,
-    val data: List<Product>,
-    val message: String?,
+    val data: AddCartData,
+    val message: Any,
     val status: Boolean
 )
-

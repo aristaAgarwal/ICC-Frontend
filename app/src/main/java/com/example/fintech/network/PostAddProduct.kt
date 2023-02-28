@@ -1,6 +1,8 @@
 package com.example.fintech.network
 
 import com.example.fintech.model.AddProductToCart
+import com.example.fintech.model.BaseResponseDO
+import com.example.fintech.model.CartDO
 import com.example.fintech.model.ProductsDO
 import okhttp3.Cookie
 import retrofit2.Response
@@ -13,6 +15,6 @@ interface PostAddProduct {
     @POST("cart/add")
     suspend fun postAddProduct(
         @Body addProduct: AddProductToCart,
-        @Header("Set-Cookie") cookies: String
-    ): Response<ProductsDO>
+        @Header("Cookie") cookies: String
+    ): Response<CartDO>
 }
