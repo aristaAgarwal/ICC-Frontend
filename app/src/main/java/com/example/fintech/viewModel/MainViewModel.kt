@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fintech.constants.AppPreferences
 import com.example.fintech.model.*
+import com.example.fintech.network.RetrofitBuilder
 import com.example.fintech.network.RetrofitService
 import kotlinx.coroutines.launch
 import okhttp3.Cookie
@@ -32,6 +33,7 @@ class MainViewModel : ViewModel() {
     var logoutApi = RetrofitService().logout
     var allProducts = RetrofitService().products
     var addProduct = RetrofitService().addProduct
+    var allProduct = RetrofitService().getAllProduct
 
     fun authenticate(idToken: IdToken) {
         viewModelScope.launch {
@@ -107,6 +109,19 @@ class MainViewModel : ViewModel() {
                 Log.e("mainViewModel", "product added successfully")
             } catch (e:Exception){
                 Log.e("mainViewModel", "error with adding product")
+                Log.e("addProducts",e.toString())
+            }
+        }
+    }
+
+    fun getAllProducts(cookie: String){
+        viewModelScope.launch {
+            try {
+                val result = allProduct.getAllProduct(cookie)
+                _addProductApiCaller.postValue(result.body())
+                Log.e("mainViewModel", "cart product fetched successfully")
+            } catch (e:Exception){
+                Log.e("mainViewModel", "error with fetching product")
                 Log.e("addProducts",e.toString())
             }
         }

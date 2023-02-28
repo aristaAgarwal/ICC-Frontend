@@ -66,7 +66,7 @@ class ShopFragment : Fragment(), ProductCardAdapter.AppLinkClick, java.io.Serial
         val mainViewModel by viewModels<MainViewModel>()
         val product = AddProductToCart(productId, size)
         mainViewModel.addProducts(product, AppPreferences(context).cookies)
-        mainViewModel.productApiCaller.observe(
+        mainViewModel.addProductApiCaller.observe(
             this
         ){
             if (it != null)

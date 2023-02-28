@@ -26,6 +26,7 @@
         android:textAppearance="@style/heading" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/CartRv"
         android:layout_below="@id/cart_heading"
         android:layout_above="@id/cart_details"
         android:layout_marginVertical="21dp"
