@@ -7,17 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fintech.UI.activities.CartActivity
 import com.example.fintech.UI.activities.ProductActivity
 import com.example.fintech.adapter.ProductCardAdapter
 import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.FragmentShopBinding
 import com.example.fintech.model.AddProductToCart
-import com.example.fintech.model.AllProductsDO
 import com.example.fintech.model.Product
 import com.example.fintech.viewModel.MainViewModel
 
@@ -44,7 +41,7 @@ class ShopFragment : Fragment(), ProductCardAdapter.AppLinkClick, java.io.Serial
         }
     }
 
-    fun setProductsAdapter(data: AllProductsDO) {
+    fun setProductsAdapter(data: List<Product>) {
         Log.e("shopActivity", "In here")
         val layoutManager = GridLayoutManager(requireContext(), 2)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
