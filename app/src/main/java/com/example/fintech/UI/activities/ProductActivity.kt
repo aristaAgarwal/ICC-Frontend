@@ -1,5 +1,6 @@
 package com.example.fintech.UI.activities
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
@@ -20,11 +21,24 @@ class ProductActivity : AppCompatActivity() {
         setContentView(binding.root)
         val product = intent.getSerializableExtra("product") as Product
         setContent(product)
+        init()
+    }
+
+    fun init(){
+        binding.back.setOnClickListener{
+            this.finish()
+        }
+
+        binding.addToCart.setOnClickListener {
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun setContent(product: Product) {
         loadImage(product.display_image, binding.productImage)
         binding.productTitle.text = product.name
+        binding.expandDescriptionTextView.setText(product.description)
     }
 
     fun loadImage(imageUrl: String, imageView: ImageView) {

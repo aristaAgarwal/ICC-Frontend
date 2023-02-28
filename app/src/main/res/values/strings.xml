@@ -34,6 +34,15 @@
     <string name="today_s_match_highlights">Today’s Match Highlights</string>
     <string name="australia_tour_of_india_2023">Australia Tour of India 2023</string>
     <string name="popular_in_cricket">Popular in Cricket</string>
+    <string name="hyphen">-</string>
+    <string name="_1">1</string>
+    <string name="add_product">+</string>
+    <string name="l">L</string>
+    <string name="xl">XL</string>
+    <string name="xxl">XXL</string>
+    <string name="s">S</string>
+    <string name="m">M</string>
+    <string name="description">Description</string>
     <string name="cart">Cart</string>
     <string name="sub_total">Sub Total</string>
     <string name="shipping">Shipping</string>
