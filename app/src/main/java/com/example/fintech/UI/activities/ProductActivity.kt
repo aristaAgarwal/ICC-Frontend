@@ -25,8 +25,7 @@ class ProductActivity : AppCompatActivity() {
     fun setContent(product: Product) {
         loadImage(product.display_image, binding.productImage)
         binding.productTitle.text = product.name
-        binding.productDescription.text = product.description
-        binding.expandTextView.setText("Description"+"\n\n"+product.description)
+        binding.expandDescriptionTextView.setText(product.description)
     }
 
     fun loadImage(imageUrl: String, imageView: ImageView) {
