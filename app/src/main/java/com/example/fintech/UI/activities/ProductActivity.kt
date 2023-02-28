@@ -36,7 +36,7 @@ class ProductActivity : AppCompatActivity() {
 
         binding.addToCart.setOnClickListener {
             val mainViewModel by viewModels<MainViewModel>()
-            val product = AddProductToCart(prod.uuid, prod.sizes[0])
+            val product = AddProductToCart(prod.uuid, "L")
             mainViewModel.addProducts(product, AppPreferences(this).cookies)
             mainViewModel.addProductApiCaller.observe(
                 this

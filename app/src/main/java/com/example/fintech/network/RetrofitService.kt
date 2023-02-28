@@ -1,5 +1,7 @@
 package com.example.fintech.network
 
+import retrofit2.create
+
 class RetrofitService {
     var authentication = RetrofitBuilder.getInstance().create(Authentication::class.java)
     var otpAuthentication = RetrofitBuilder.getInstance().create(Authentication::class.java)
@@ -9,4 +11,5 @@ class RetrofitService {
     var addProduct = RetrofitBuilder.getInstance().create(CartProduct::class.java)
     var getAllProduct = RetrofitBuilder.getInstance().create(CartProduct::class.java)
     var removeProduct = RetrofitBuilder.getInstance().create(CartProduct::class.java)
+    var checkout = RetrofitBuilder.getInstance().create(Checkout::class.java)
 }

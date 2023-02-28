@@ -20,12 +20,15 @@ import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.ActivityCartBinding
 import com.example.fintech.model.AddCartData
 import com.example.fintech.model.AddProductToCart
+import com.example.fintech.model.CartIdDO
 import com.example.fintech.model.Product
 import com.example.fintech.viewModel.MainViewModel
 import java.io.Serializable
 
 class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
     lateinit var binding: ActivityCartBinding
+    var cartId: String? = null
+    val mainViewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
@@ -38,16 +41,36 @@ class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
         binding.back.setOnClickListener {
             this.finish()
         }
+
+        binding.checkout.setOnClickListener {
+            checkout()
+        }
+    }
+
+    fun checkout() {
+
+        val cartId =  CartIdDO(cartId!!)
+        mainViewModel.checkout(cartId, AppPreferences(this).cookies)
+        mainViewModel.checkoutApiCaller.observe(
+            this
+        ){
+            if(it != null){
+                Log.e("CartActivity", it.toString())
+            }
+        }
+
     }
 
     fun getAllProducts() {
-        val mainViewModel by viewModels<MainViewModel>()
         mainViewModel.getAllProducts(AppPreferences(this).cookies)
         mainViewModel.addProductApiCaller.observe(
             this
         ) {
             if (it != null) {
-                if (it.data != null) addCartItem(it.data.products)
+                if (it.data != null){
+                    addCartItem(it.data.products)
+                    cartId = it.data._id
+                }
             }
         }
     }
@@ -60,7 +83,6 @@ class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
     }
 
     override fun onAppLinkClicked(uuid: String, size: String) {
-        val mainViewModel by viewModels<MainViewModel>()
         val product = AddProductToCart(uuid, size)
         mainViewModel.removeProduct(product, AppPreferences(this).cookies)
         mainViewModel.addProductApiCaller.observe(

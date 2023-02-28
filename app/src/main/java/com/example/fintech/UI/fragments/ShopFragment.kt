@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fintech.UI.activities.CartActivity
 import com.example.fintech.UI.activities.ProductActivity
 import com.example.fintech.adapter.ProductCardAdapter
 import com.example.fintech.constants.AppPreferences
@@ -28,7 +29,15 @@ class ShopFragment : Fragment(), ProductCardAdapter.AppLinkClick, java.io.Serial
         // Inflate the layout for this fragment
         binding = FragmentShopBinding.inflate(inflater, container, false)
         getProducts()
+        init()
         return binding!!.root
+    }
+
+    fun init(){
+        binding?.cart?.setOnClickListener{
+            val intent = Intent(context, CartActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun getProducts() {
@@ -57,7 +66,7 @@ class ShopFragment : Fragment(), ProductCardAdapter.AppLinkClick, java.io.Serial
             startActivity(intent)
         }
         else {
-            addToCart(product.uuid, "M")
+            addToCart(product.uuid, "L")
         }
 
     }

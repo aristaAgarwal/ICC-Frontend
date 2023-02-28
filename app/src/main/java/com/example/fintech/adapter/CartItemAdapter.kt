@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,6 +52,7 @@ class CartItemAdapter(
             mrp.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             discountedMrp.text = product.discount.toString()
             description.isSingleLine = true
+            Log.e("CartAdapter", product.toString())
             delete.setOnClickListener{
 
                 onAppLinkClick.onAppLinkClicked(product.uuid, product.sizes[0])

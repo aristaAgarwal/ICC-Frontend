@@ -38,8 +38,6 @@ class ProductCardAdapter(
         var discount = view.findViewById<TextView>(R.id.discount)
         var addButton = view.findViewById<CardView>(R.id.add_button)
         fun bindItem(product: Product) {
-//            image = product.display_image
-            Log.e("in Adapter", product.description.toString())
             title.text = product.name
             description.text = product.description
             mrp.text = product.price.toString()

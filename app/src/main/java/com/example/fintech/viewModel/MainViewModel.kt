@@ -28,6 +28,10 @@ class MainViewModel : ViewModel() {
     val addProductApiCaller: LiveData<CartDO>
         get() = _addProductApiCaller
 
+    private var _checkoutApiCaller = MutableLiveData<CartCheckoutDO>()
+    val checkoutApiCaller: LiveData<CartCheckoutDO>
+        get() = _checkoutApiCaller
+
     var otpApi = RetrofitService().otpAuthentication
     var verifyOtpApi = RetrofitService().otpVerification
     var logoutApi = RetrofitService().logout
@@ -35,6 +39,7 @@ class MainViewModel : ViewModel() {
     var addProduct = RetrofitService().addProduct
     var allProduct = RetrofitService().getAllProduct
     var removeProduct = RetrofitService().removeProduct
+    var checkout = RetrofitService().checkout
 
     fun authenticate(idToken: IdToken) {
         viewModelScope.launch {
@@ -137,6 +142,20 @@ class MainViewModel : ViewModel() {
             } catch (e:Exception){
 
                 Log.e("mainViewModel", "error with removing product")
+                Log.e("addProducts",e.toString())
+            }
+        }
+    }
+
+    fun checkout(cartId: CartIdDO, cookie: String){
+        viewModelScope.launch {
+            try {
+                val result = checkout.checkout(cartId, cookie)
+                _checkoutApiCaller.postValue(result.body())
+                Log.e("Checkout MVVM", "Checkout successfully")
+            } catch (e:Exception){
+
+                Log.e("mainViewModel", "error with checking out product")
                 Log.e("addProducts",e.toString())
             }
         }
