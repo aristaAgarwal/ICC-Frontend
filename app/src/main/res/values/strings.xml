@@ -48,4 +48,5 @@
     <string name="shipping">Shipping</string>
     <string name="_0_00">₹0.00</string>
     <string name="total">Total</string>
+    <string name="profile">Profile</string>
 </resources>

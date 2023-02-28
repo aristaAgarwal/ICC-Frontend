@@ -39,6 +39,12 @@ class MainActivity : AppCompatActivity() {
             drawerNav.openDrawer(GravityCompat.START)
         }
 
+        binding.navigationView.menu.findItem(R.id.nav_account).setOnMenuItemClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+            false
+        }
+
         binding.bottomNavigationView.itemIconTintList = null
         setCurrentFragment(HomeFragment())
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
