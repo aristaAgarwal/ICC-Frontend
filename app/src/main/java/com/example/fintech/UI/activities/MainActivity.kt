@@ -3,6 +3,7 @@ package com.example.fintech.UI.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -39,10 +40,12 @@ class MainActivity : AppCompatActivity() {
             drawerNav.openDrawer(GravityCompat.START)
         }
 
+//        onNavigationItemSelected(binding.navigationView.menu.findItem(R.id.nav_account))
+
         binding.navigationView.menu.findItem(R.id.nav_account).setOnMenuItemClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
-            false
+            true
         }
 
         binding.bottomNavigationView.itemIconTintList = null
@@ -62,34 +65,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             this.finish()
-        } else {
-
-            Log.e("idToken",AppPreferences(this).idToken)
-            signOut()
-        }
-    }
-
-    private fun signOut() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(BuildConfig.CLIENT_ID).requestEmail().build()
-
-        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        binding.navigationView.menu.findItem(R.id.nav_logout).setOnMenuItemClickListener {
-            val mainViewModel by viewModels<MainViewModel>()
-            mainViewModel.logout(AppPreferences(this).cookies)
-            mainViewModel.apiCaller.observe(this) {
-                if (it != null) {
-                    AppPreferences(this).cookies = null
-                    Log.e("MainActivity", "logout")
-                    mGoogleSignInClient.signOut().addOnCompleteListener(this) {
-                        val intent = Intent(this, LoginActivity::class.java)
-                        startActivity(intent)
-                        this.finish()
-                    }
-                }
-            }
-            false
         }
     }
 
@@ -102,8 +77,9 @@ class MainActivity : AppCompatActivity() {
 //    fun onNavigationItemSelected(item: MenuItem): Boolean {
 //        // Handle navigation view item clicks here.
 //        val id: Int = item.getItemId()
-//        if (id == com.example.fintech.R.id.nav_logout) {
-//            // Handle the camera action
+//        if (id == R.id.nav_account) {
+//            val intent = Intent(this, ProfileActivity::class.java)
+//            startActivity(intent)
 //        }
 //        val drawer = binding.myDrawerLayout
 //        drawer.closeDrawer(GravityCompat.START)
