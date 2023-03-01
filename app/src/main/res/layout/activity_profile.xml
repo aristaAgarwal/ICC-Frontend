@@ -92,8 +92,8 @@
                 android:textSize="10sp" />
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="3dp"
-                android:layout_height="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="4dp"
                 android:backgroundTint="#808080"

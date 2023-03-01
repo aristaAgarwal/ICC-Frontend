@@ -156,7 +156,7 @@ class MainViewModel : ViewModel() {
             try {
                 val result = userInfo.getUserInfo(cookie)
                 _apiCaller.postValue(result.body())
-                Log.e("RemoveProduct MVVM", "removed -> ${result.body()?.message}")
+                Log.e("Profile Activity", "userInfoFetchedSuccessfully")
             } catch (e:Exception){
 
                 Log.e("mainViewModel", "error with removing product")
