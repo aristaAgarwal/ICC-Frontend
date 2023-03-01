@@ -40,7 +40,7 @@
                 android:id="@+id/profile_cv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="14dp"
+                app:cardCornerRadius="22dp"
                 android:backgroundTint="@color/transparent">
 
                 <ImageView
