@@ -40,7 +40,7 @@
             android:padding="4dp"
             android:background="@drawable/search_bg"
             android:queryHint="Search"
-            android:backgroundTint="#57FFFFFF"
+            android:backgroundTint="@color/grey"
             android:layout_marginHorizontal="24dp"/>
 
         <LinearLayout

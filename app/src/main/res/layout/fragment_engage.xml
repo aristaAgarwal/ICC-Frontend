@@ -29,4 +29,19 @@
 
     </RelativeLayout>
 
+
+    <RelativeLayout
+        android:id="@+id/card_2_item_layout"
+        android:layout_below="@+id/card_item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp">
+
+        <include
+            android:id="@+id/card_item2"
+            layout="@layout/engagement_item_layout"/>
+
+    </RelativeLayout>
+
 </RelativeLayout>
