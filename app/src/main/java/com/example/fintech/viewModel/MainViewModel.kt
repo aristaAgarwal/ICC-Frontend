@@ -89,7 +89,7 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val result = logoutApi.logout(cookies)
-                _apiCaller.postValue(result.body())
+                _logoutApiCaller.postValue(result.body())
                 Log.e("mainViewModel", "logout Successful")
             } catch (e: Exception) {
                 Log.e("mainViewModel", "Error with logout")
