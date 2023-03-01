@@ -32,6 +32,12 @@
 
             <include layout="@layout/recent_matches" />
 
+            <include layout="@layout/recent_matches" />
+
+            <include layout="@layout/recent_matches" />
+
+            <include layout="@layout/recent_matches" />
+
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -55,6 +61,11 @@
             android:nestedScrollingEnabled="true"
             android:orientation="vertical">
 
+            <include layout="@layout/upcoming_matches_holder" />
+
+            <include layout="@layout/upcoming_matches_holder" />
+
+            <include layout="@layout/upcoming_matches_holder" />
             <include layout="@layout/upcoming_matches_holder" />
 
             <include layout="@layout/upcoming_matches_holder" />

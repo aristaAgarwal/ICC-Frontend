@@ -8,17 +8,17 @@ import com.example.fintech.UI.fragments.MatchesFragment
 import com.example.fintech.UI.fragments.NewsFragment
 import com.example.fintech.UI.fragments.VideosFragment
 
-class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-    override fun getItemCount() = 3
+class ViewPagerAdapter(fragment: Fragment,var fragments: List<Fragment>) : FragmentStateAdapter(fragment) {
+    override fun getItemCount() = fragments.size
 
     override fun createFragment(position: Int): Fragment {
 
         when (position) {
-            0 -> return MatchesFragment()
-            1 -> return NewsFragment()
-            2 -> return VideosFragment()
+            0 -> return fragments[position]
+            1 -> return fragments[position]
+            2 -> return fragments[position]
         }
         Log.e("Adapter", position.toString())
-        return HomeFragment()
+        return fragments[position]
     }
 }

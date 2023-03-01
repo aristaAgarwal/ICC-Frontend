@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.fragments.ProductFragment"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="25dp"-->
+<!--        android:layout_marginTop="5dp">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Top searches"-->
+<!--            android:layout_marginEnd="11dp"-->
+<!--            android:textAppearance="@style/heading"/>-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="32dp"-->
+<!--            android:layout_marginEnd="11dp"/>-->
+<!--    </LinearLayout>-->
+
+
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:layout_marginHorizontal="25dp"-->
+<!--        android:layout_marginVertical="5dp"-->
+<!--        android:background="@color/grey"/>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/products_rv"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginBottom="80dp" />
+</LinearLayout>

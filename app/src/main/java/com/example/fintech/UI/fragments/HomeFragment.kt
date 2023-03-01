@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.example.fintech.R
 import com.example.fintech.adapter.ViewPagerAdapter
 import com.example.fintech.databinding.FragmentHomeBinding
+import com.example.fintech.databinding.FragmentMatchesBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 
@@ -26,7 +28,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.pager?.adapter = ViewPagerAdapter(this)
+        var fragments = listOf(MatchesFragment(), NewsFragment(), VideosFragment())
+        binding?.pager?.adapter = ViewPagerAdapter(this, fragments)
 
         TabLayoutMediator(
             binding!!.tabLayout, binding!!.pager
