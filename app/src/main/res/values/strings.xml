@@ -44,4 +44,25 @@
     <string name="m">M</string>
     <string name="description">Description</string>
     <string name="cart">Cart</string>
+    <string name="sub_total">Sub Total</string>
+    <string name="shipping">Shipping</string>
+    <string name="_0_00">₹0.00</string>
+    <string name="total">Total</string>
+    <string name="profile">Profile</string>
+    <string name="reward_referral"><![CDATA[Reward & referral]]></string>
+    <string name="reward_coins">Reward Coins</string>
+    <string name="referral_code">Referral Code</string>
+    <string name="orders_support"><![CDATA[Orders & support]]></string>
+    <string name="support">Support</string>
+    <string name="account_settings">ACCOUNT SETTINGS</string>
+    <string-array name="country_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
 </resources>

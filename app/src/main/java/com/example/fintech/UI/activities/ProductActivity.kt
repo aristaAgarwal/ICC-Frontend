@@ -7,13 +7,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import androidx.activity.viewModels
 import androidx.annotation.Nullable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.ActivityProductBinding
+import com.example.fintech.model.AddProductToCart
 import com.example.fintech.model.Product
+import com.example.fintech.viewModel.MainViewModel
 
 class ProductActivity : AppCompatActivity() {
     lateinit var binding: ActivityProductBinding
@@ -23,15 +26,23 @@ class ProductActivity : AppCompatActivity() {
         setContentView(binding.root)
         val product = intent.getSerializableExtra("product") as Product
         setContent(product)
-        init()
+        init(product)
     }
 
-    fun init(){
-        binding.back.setOnClickListener{
+    fun init(prod: Product) {
+        binding.back.setOnClickListener {
             this.finish()
         }
 
         binding.addToCart.setOnClickListener {
+            val mainViewModel by viewModels<MainViewModel>()
+            val product = AddProductToCart(prod.uuid, "L")
+            mainViewModel.addProducts(product, AppPreferences(this).cookies)
+            mainViewModel.addProductApiCaller.observe(
+                this
+            ) {
+                if (it != null) Log.e("ProductActivity", it.toString())
+            }
             val intent = Intent(this, CartActivity::class.java)
             startActivity(intent)
         }

@@ -1,8 +1,8 @@
 package com.example.fintech.model
 
-data class BaseResponseDO(
+data class CartCheckoutDO(
     val code: Int,
-    val data: Data,
+    val data: Checkout,
     val message: Any,
     val status: Boolean
 )
