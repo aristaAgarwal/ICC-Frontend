@@ -11,4 +11,5 @@
     <color name="grey">#8AD9D9D9</color>
     <color name="icc_black">#FF0D0D14</color>
     <color name="icc_grey">#7C7C7C</color>
+    <color name="dark_grey">#575D72</color>
 </resources>

@@ -13,7 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
         android:src="@drawable/back" />
 
     <TextView
@@ -24,6 +25,17 @@
         android:gravity="center_horizontal"
         android:text="@string/cart"
         android:textAppearance="@style/heading" />
+
+    <TextView
+        android:id="@+id/emptyCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/sub_heading"
+        android:gravity="center"
+        android:text="Your Cart is Empty\n Add products and enjoy shopping."
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_marginTop="100dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/CartRv"
@@ -188,5 +200,12 @@
 
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
+
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 </RelativeLayout>

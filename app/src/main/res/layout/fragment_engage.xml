@@ -1,17 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".UI.fragments.EngageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:text="Engage Fragment" />
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Engage"
+        android:layout_marginTop="34dp"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/heading"/>
 
-</FrameLayout>
+    <RelativeLayout
+        android:id="@+id/card_item_layout"
+        android:layout_below="@+id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="34dp">
+
+        <include
+            android:id="@+id/card_item"
+            layout="@layout/engagement_item_layout"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/card_2_item_layout"
+        android:layout_below="@+id/card_item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp">
+
+        <include
+            android:id="@+id/card_item2"
+            layout="@layout/engagement_item_layout"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

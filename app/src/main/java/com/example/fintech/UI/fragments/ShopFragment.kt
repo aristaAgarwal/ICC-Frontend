@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -80,6 +81,7 @@ class ShopFragment : Fragment(), ProductCardAdapter.AppLinkClick, java.io.Serial
         ){
             if (it != null)
                 Log.e("CartActivity", it.toString())
+            Toast.makeText(context, "Product added successfully",Toast.LENGTH_SHORT).show()
         }
     }
 }
