@@ -1,5 +1,6 @@
 package com.example.fintech.UI.activities
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fintech.R
 import com.example.fintech.adapter.CartItemAdapter
 import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.ActivityCartBinding
@@ -34,9 +36,6 @@ class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
             this.finish()
         }
 
-        binding.checkout.setOnClickListener {
-            checkout()
-        }
     }
 
     fun checkout() {
@@ -64,6 +63,23 @@ class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
                 if (it.data != null) {
                     addCartItem(it.data.products)
                     cartId = it.data._id
+                    if(it.data.products.isEmpty()){
+                        binding.cartDetails.isVisible = false
+                        binding.emptyCart.isVisible = true
+                    }
+                    else{
+                        binding.emptyCart.isVisible = false
+                        binding.cartDetails.isVisible = true
+                        binding.checkout.setCardBackgroundColor(Color.WHITE)
+                        binding.subTotal.text = it.data.products[0].price.toString()
+                        binding.total.text = it.data.products[0].price.toString()
+                        binding.checkout.setOnClickListener {
+                            checkout()
+                        }
+                    }
+                } else{
+                    binding.cartDetails.isVisible = false
+                    binding.emptyCart.isVisible = true
                 }
             }
         }
