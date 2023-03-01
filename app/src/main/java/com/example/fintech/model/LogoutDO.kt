@@ -1,8 +1,8 @@
 package com.example.fintech.model
 
-data class BaseResponseDO(
+data class LogoutDO(
     val code: Int,
-    val data: Data,
+    val data: Boolean,
     val message: Any,
     val status: Boolean
 )

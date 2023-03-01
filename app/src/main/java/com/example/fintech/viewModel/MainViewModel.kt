@@ -19,6 +19,9 @@ class MainViewModel : ViewModel() {
     private var _apiCaller = MutableLiveData<BaseResponseDO>()
     val apiCaller: LiveData<BaseResponseDO>
         get() = _apiCaller
+    private var _logoutApiCaller = MutableLiveData<LogoutDO>()
+    val logoutApiCaller: LiveData<LogoutDO>
+        get() = _logoutApiCaller
 
     private var _productApiCaller = MutableLiveData<ProductsDO>()
     val productApiCaller: LiveData<ProductsDO>
@@ -35,6 +38,7 @@ class MainViewModel : ViewModel() {
     var addProduct = RetrofitService().addProduct
     var allProduct = RetrofitService().getAllProduct
     var removeProduct = RetrofitService().removeProduct
+    var userInfo = RetrofitService().userInfo
 
     fun authenticate(idToken: IdToken) {
         viewModelScope.launch {
@@ -80,7 +84,7 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val result = logoutApi.logout(cookies)
-                _apiCaller.postValue(result.body())
+                _logoutApiCaller.postValue(result.body())
                 Log.e("mainViewModel", "logout Successful")
             } catch (e: Exception) {
                 Log.e("mainViewModel", "Error with logout")
@@ -133,6 +137,20 @@ class MainViewModel : ViewModel() {
             try {
                 val result = removeProduct.removeProduct(product,cookie)
                 _addProductApiCaller.postValue(result.body())
+                Log.e("RemoveProduct MVVM", "removed -> ${result.body()?.message}")
+            } catch (e:Exception){
+
+                Log.e("mainViewModel", "error with removing product")
+                Log.e("addProducts",e.toString())
+            }
+        }
+    }
+
+    fun getUserInfo(cookie: String){
+        viewModelScope.launch {
+            try {
+                val result = userInfo.getUserInfo(cookie)
+                _apiCaller.postValue(result.body())
                 Log.e("RemoveProduct MVVM", "removed -> ${result.body()?.message}")
             } catch (e:Exception){
 

@@ -27,8 +27,14 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 //        setCountry()
         signOut()
+        init()
     }
 
+    fun init(){
+        binding.back.setOnClickListener{
+            this.finish()
+        }
+    }
     //    private fun setCountry(){
 //        spinner = binding.countrySpinner
 //        val countries = arrayOf("India", "Australia", "England", "New Zealand")
@@ -46,7 +52,7 @@ class ProfileActivity : AppCompatActivity() {
         binding.logout.setOnClickListener {
             val mainViewModel by viewModels<MainViewModel>()
             mainViewModel.logout(AppPreferences(this).cookies)
-            mainViewModel.apiCaller.observe(this) {
+            mainViewModel.logoutApiCaller.observe(this) {
                 if (it != null) {
                     AppPreferences(this).cookies = null
                     Log.e("MainActivity", "logout")
