@@ -23,7 +23,8 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="370dp">
+                android:layout_height="370dp"
+                android:backgroundTint="@color/white">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="32dp"
@@ -384,6 +385,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
+                android:backgroundTint="@color/white"
                 android:layout_marginTop="58dp"
                 app:cardCornerRadius="12dp">
 

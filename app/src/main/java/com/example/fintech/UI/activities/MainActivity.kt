@@ -66,12 +66,15 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        getUserInfo()
+
 
         if (AppPreferences(this).cookies == null) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             this.finish()
+        }
+        else{
+            getUserInfo()
         }
     }
 

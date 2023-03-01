@@ -1,29 +1,23 @@
 package com.example.fintech.UI.activities
 
-import android.graphics.Paint
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.cardview.widget.CardView
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.fintech.R
 import com.example.fintech.adapter.CartItemAdapter
-import com.example.fintech.adapter.ProductCardAdapter
 import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.ActivityCartBinding
-import com.example.fintech.model.AddCartData
 import com.example.fintech.model.AddProductToCart
 import com.example.fintech.model.CartIdDO
 import com.example.fintech.model.Product
 import com.example.fintech.viewModel.MainViewModel
-import java.io.Serializable
+import kotlinx.android.synthetic.main.activity_cart.*
 
 class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
     lateinit var binding: ActivityCartBinding
@@ -42,20 +36,19 @@ class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
             this.finish()
         }
 
-        binding.checkout.setOnClickListener {
-            checkout()
-        }
     }
 
     fun checkout() {
 
-        val cartId =  CartIdDO(cartId!!)
+        val cartId = CartIdDO(cartId!!)
         mainViewModel.checkout(cartId, AppPreferences(this).cookies)
         mainViewModel.checkoutApiCaller.observe(
             this
-        ){
-            if(it != null){
+        ) {
+            if (it != null) {
                 Log.e("CartActivity", it.toString())
+                binding.webView.isVisible = true
+                showWebView(it.data.meta.payment_link)
             }
         }
 
@@ -67,9 +60,26 @@ class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
             this
         ) {
             if (it != null) {
-                if (it.data != null){
+                if (it.data != null) {
                     addCartItem(it.data.products)
                     cartId = it.data._id
+                    if(it.data.products.isEmpty()){
+                        binding.cartDetails.isVisible = false
+                        binding.emptyCart.isVisible = true
+                    }
+                    else{
+                        binding.emptyCart.isVisible = false
+                        binding.cartDetails.isVisible = true
+                        binding.checkout.setCardBackgroundColor(Color.WHITE)
+                        binding.subTotal.text = it.data.products[0].price.toString()
+                        binding.total.text = it.data.products[0].price.toString()
+                        binding.checkout.setOnClickListener {
+                            checkout()
+                        }
+                    }
+                } else{
+                    binding.cartDetails.isVisible = false
+                    binding.emptyCart.isVisible = true
                 }
             }
         }
@@ -90,9 +100,17 @@ class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
         ) {
             if (it != null) {
                 if (it.data != null) Log.e("CartActivity", it.data.toString())
+                Toast.makeText(this,"Product deleted Successfully", Toast.LENGTH_SHORT).show()
             }
         }
 
     }
 
+    fun showWebView(paymentLink: String) {
+        webView.webViewClient = WebViewClient()
+
+        webView.loadUrl(paymentLink)
+        webView.settings.javaScriptEnabled = true
+        webView.settings.setSupportZoom(true)
+    }
 }

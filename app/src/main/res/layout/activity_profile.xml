@@ -36,11 +36,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/profile_cv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="14dp"
+                app:cardCornerRadius="22dp"
                 android:backgroundTint="@color/transparent">
 
                 <ImageView
@@ -48,12 +48,14 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/profile_pic" />
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:backgroundTint="@color/white"
+                android:layout_alignEnd="@+id/profile_cv"
+                android:layout_alignBottom="@+id/profile_cv"
                 app:cardCornerRadius="5dp"
                 app:strokeColor="@color/black"
                 app:strokeWidth="2dp">
@@ -67,6 +69,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
@@ -80,6 +83,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/dob"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
@@ -96,6 +100,7 @@
                 app:cardCornerRadius="1.5dp" />
 
             <TextView
+                android:id="@+id/emailId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
