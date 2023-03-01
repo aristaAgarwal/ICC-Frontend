@@ -7,16 +7,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    /*  Server URL */
-    val baseUrl =" https://icc-hack.ap-south-1.elasticbeanstalk.com"
+    private const val baseUrl = "https://icc-hack.ap-south-1.elasticbeanstalk.com"
 
-    /*  Local host
-    val baseUrl = "http://" +
-            BuildConfig.IP +
+//    val baseUrl = "http://" +
+////            BuildConfig.IP +
 //             "10.0.2.2" +
-            ":8080/"  */
+//            ":8080/"
 
-    val client = OkHttpClient.Builder()
+    private val client = OkHttpClient.Builder()
         .build()
 
     fun getInstance(): Retrofit {

@@ -58,5 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="#D92E2E2E"
+        app:itemTextColor="@color/white"
         app:menu="@menu/drawer_nav_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -49,8 +49,10 @@ class MainActivity : AppCompatActivity() {
 //        onNavigationItemSelected(binding.navigationView.menu.findItem(R.id.nav_account))
 
         binding.navigationView.menu.findItem(R.id.nav_account).setOnMenuItemClickListener {
+            val drawer = binding.myDrawerLayout
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            drawer.closeDrawer(GravityCompat.START)
             true
         }
 
