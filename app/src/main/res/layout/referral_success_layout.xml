@@ -40,10 +40,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/continue_button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="33dp"
-            android:layout_marginHorizontal="76dp"
+            android:layout_gravity="center_horizontal"
             android:backgroundTint="@color/black"
             app:cardCornerRadius="12dp">
 

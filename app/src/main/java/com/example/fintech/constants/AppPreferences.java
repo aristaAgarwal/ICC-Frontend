@@ -32,6 +32,17 @@ public class AppPreferences {
         editor.commit();
     }
 
+
+    public void setFirstLaunch(Boolean isFirstLaunch) {
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putBoolean(PreferenceNames.IS_FIRST_LAUNCH, isFirstLaunch);
+        editor.apply();
+    }
+
+    public Boolean getFirstLaunch() {
+        return sharedPrefs.getBoolean(PreferenceNames.IS_FIRST_LAUNCH, true);
+    }
+
     public String getUserName() {
         String username = "";
         try {
@@ -81,6 +92,7 @@ public class AppPreferences {
         private static final String EMAIL_ID = "EMAIL_ID";
         private static final String COOKIES = "COOKIES";
         private static final String ID_TOKEN = "ID_TOKEN";
+        public static final String IS_FIRST_LAUNCH = "IS_FIRST_LAUNCH";
         private static final String USER_NAME = "USER_NAME";
         private static final String APP_SHARED_PREFS = "com.example.fintech";
     }
