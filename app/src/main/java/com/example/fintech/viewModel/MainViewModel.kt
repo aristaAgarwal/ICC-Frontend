@@ -35,6 +35,10 @@ class MainViewModel : ViewModel() {
     val checkoutApiCaller: LiveData<CartCheckoutDO>
         get() = _checkoutApiCaller
 
+    private var _videosApiCaller = MutableLiveData<VideosDO>()
+    val videosApiCaller: LiveData<VideosDO>
+        get() = _videosApiCaller
+
     var otpApi = RetrofitService().otpAuthentication
     var verifyOtpApi = RetrofitService().otpVerification
     var logoutApi = RetrofitService().logout
@@ -44,6 +48,7 @@ class MainViewModel : ViewModel() {
     var removeProduct = RetrofitService().removeProduct
     var checkout = RetrofitService().checkout
     var userInfo = RetrofitService().userInfo
+    var videos = RetrofitService().videos
 
     fun authenticate(idToken: IdToken) {
         viewModelScope.launch {
@@ -175,6 +180,19 @@ class MainViewModel : ViewModel() {
 
                 Log.e("mainViewModel", "error with checking out product")
                 Log.e("addProducts",e.toString())
+            }
+        }
+    }
+
+    fun getTutorials(cookies: String, type: String){
+        viewModelScope.launch {
+            try {
+                val result = videos.getTutorials(cookies, type)
+                _videosApiCaller.postValue(result.body())
+                Log.e("getTutorials MVM", "results fetched")
+            } catch (e:java.lang.Exception){
+                Log.e("getTutorials MVM", "error with fetching videos")
+                Log.e("getTutorials MVM",e.toString())
             }
         }
     }
