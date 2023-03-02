@@ -75,7 +75,7 @@ class ProfileActivity : AppCompatActivity() {
             this
         ){
             if(it != null){
-                loadImage(it.data.profile_img_url, binding.profilePic)
+                loadImage(it.data!!.profile_img_url, binding.profilePic)
                 binding.name.text = it.data.name
                 binding.emailId.text = it.data.email
             }

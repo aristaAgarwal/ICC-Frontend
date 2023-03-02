@@ -5,13 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fintech.constants.AppPreferences
 import com.example.fintech.model.*
-import com.example.fintech.network.RetrofitBuilder
 import com.example.fintech.network.RetrofitService
 import kotlinx.coroutines.launch
-import okhttp3.Cookie
-
 class MainViewModel : ViewModel() {
     var cookies: String? = null
 
@@ -44,6 +40,7 @@ class MainViewModel : ViewModel() {
     var removeProduct = RetrofitService().removeProduct
     var checkout = RetrofitService().checkout
     var userInfo = RetrofitService().userInfo
+    var checkReferral = RetrofitService().checkReferral
 
     fun authenticate(idToken: IdToken) {
         viewModelScope.launch {
@@ -80,6 +77,19 @@ class MainViewModel : ViewModel() {
                 cookies = result.headers()["Set-Cookie"]
             } catch (e: Exception) {
                 Log.e("mainViewModel", "Error with otpAuthentication")
+                Log.e("mainViewModel", e.toString())
+            }
+        }
+    }
+
+    fun checkReferral(query: String){
+        viewModelScope.launch {
+            try {
+                val result = checkReferral.checkReferral(query)
+                _apiCaller.postValue(result.body())
+                Log.e("mainViewModel", "Referral fetched")
+            } catch (e: Exception) {
+                Log.e("mainViewModel", "Referral call failed")
                 Log.e("mainViewModel", e.toString())
             }
         }

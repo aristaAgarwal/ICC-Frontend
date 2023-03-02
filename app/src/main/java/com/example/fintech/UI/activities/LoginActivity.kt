@@ -2,9 +2,10 @@ package com.example.fintech.UI.activities
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
@@ -68,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
             }
-            R.id.back_btn ->{
+            R.id.back_btn -> {
                 val fragmentManager = supportFragmentManager
                 val fragment = fragmentManager.findFragmentById(R.id.frameLayout)
                 val fragmentTransaction = fragmentManager.beginTransaction()
@@ -97,7 +98,10 @@ class LoginActivity : AppCompatActivity() {
             mainViewModel.apiCaller.observe(this) {
                 if (it != null) {
                     Log.e("loginActivity", it.data.toString().contains("name").toString())
-                    Log.e("loginActivity", it.data.toString().substringAfter("name=").substringBefore(","))
+                    Log.e(
+                        "loginActivity",
+                        it.data.toString().substringAfter("name=").substringBefore(",")
+                    )
                     AppPreferences(this).idToken = id
                     AppPreferences(this).cookies = mainViewModel.cookies
                     updateUI(account)
@@ -120,7 +124,7 @@ class LoginActivity : AppCompatActivity() {
             if (AppPreferences(this).firstLaunch) {
                 AppPreferences(this).firstLaunch = false
                 showReferralFlow()
-            } else{
+            } else {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 this.finish()
@@ -130,12 +134,49 @@ class LoginActivity : AppCompatActivity() {
 
     fun showReferralFlow() {
         setLayout(binding.referralLayout, true)
-        val code: String = binding.referralCode.referralCode.text.toString()
-        binding.referralLayout.continue_button.setCardBackgroundColor(Color.BLACK)
+
+        binding.referralCode.referralCode.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {
+                val code: String = binding.referralCode.referralCode.text.toString()
+                if (code.length == 6) {
+                    setListeners(code)
+                    binding.referralCode.errorCode.isVisible = false
+                } else {
+                    binding.referralCode.errorCode.isVisible = true
+                }
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int, before: Int, count: Int
+            ) {
+            }
+        })
+
+    }
+
+    fun setListeners(code: String) {
         binding.referralLayout.continue_button.setOnClickListener {
-            setLayout(binding.referralLayout, false)
-            Toast.makeText(this, "Hurrayy!!\nYou received 100 coins", Toast.LENGTH_SHORT).show()
-            setLayout(binding.referralLayoutSuccess, true)
+            val viewModel by viewModels<MainViewModel>()
+            viewModel.checkReferral(code)
+            viewModel.apiCaller.observe(
+                this
+            ) {
+                if (it != null) {
+                    if (it.data != null) {
+                        binding.referralCode.errorCode.isVisible = false
+                        setLayout(binding.referralLayout, false)
+//                        setLayout(binding.referralLayoutSuccess, true)
+                    } else {
+                        binding.referralCode.errorCode.isVisible = true
+                    }
+                }
+            }
         }
         binding.referralLayout.skip_button.setOnClickListener {
             setLayout(binding.referralLayout, false)
@@ -143,14 +184,15 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             this.finish()
         }
-        binding.referralCodeSuccess.continueButton.setOnClickListener {
-            setLayout(binding.referralLayoutSuccess, false)
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            this.finish()
-        }
+//        binding.referralCodeSuccess.continueButton.setOnClickListener {
+//            Log.e("Success","I m clicked")
+//            Toast.makeText(this, "Hurrayy!!\nYou received 100 coins", Toast.LENGTH_SHORT).show()
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//            setLayout(binding.referralLayoutSuccess, false)
+//            this.finish()
+//        }
     }
-
 
     fun setLayout(layout: RelativeLayout, b: Boolean) {
 

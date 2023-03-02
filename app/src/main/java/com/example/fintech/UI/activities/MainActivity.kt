@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
             this
         ) {
             if (it != null) {
-                loadImage(it.data.profile_img_url, binding.profilePic)
+                loadImage(it.data!!.profile_img_url, binding.profilePic)
             }
         }
     }

@@ -65,11 +65,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/grey_edittext"
-            android:fontFamily="@font/poppins_semibold"
+            android:textAppearance="@style/dark_text"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:gravity="center"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
+        <TextView
+            android:id="@+id/error_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Code should be of 6 characters or check it again"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            android:lineHeight="16dp"
+            android:gravity="center_horizontal"/>
         <androidx.cardview.widget.CardView
             android:id="@+id/continue_button"
             android:layout_width="wrap_content"

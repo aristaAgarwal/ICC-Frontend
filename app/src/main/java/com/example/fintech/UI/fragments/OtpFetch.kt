@@ -4,12 +4,15 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -73,24 +76,65 @@ class OtpFetch : Fragment() {
 
     fun showReferralFlow() {
         setLayout(binding?.referralLayout, true)
-        val code: String = binding?.referralCode?.referralCode?.text.toString()
-        binding?.referralLayout!!.continue_button.setCardBackgroundColor(Color.BLACK)
-        binding?.referralLayout!!.continue_button.setOnClickListener {
-            setLayout(binding?.referralLayout, false)
+
+        binding?.referralCode!!.referralCode.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {
+                val code: String = binding!!.referralCode.referralCode.text.toString()
+                if (code.length == 6) {
+                    setListeners(code)
+                    binding!!.referralCode.errorCode.isVisible = false
+                } else {
+                    binding!!.referralCode.errorCode.isVisible = true
+                }
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int, before: Int, count: Int
+            ) {
+            }
+        })
+
+    }
+
+    fun setListeners(code: String) {
+        binding!!.referralLayout.continue_button.setOnClickListener {
+            val viewModel by viewModels<MainViewModel>()
+            viewModel.checkReferral(code)
+            viewModel.apiCaller.observe(
+                this
+            ) {
+                if (it != null) {
+                    if (it.data != null) {
+                        binding?.referralCode!!.errorCode.isVisible = false
+                        setLayout(binding!!.referralLayout, false)
+                        setLayout(binding!!.referralLayoutSuccess, true)
+
+                    } else {
+                        binding!!.referralCode.errorCode.isVisible = true
+                    }
+                }
+            }
+        }
+
+        binding?.referralLayout?.skip_button?.setOnClickListener {
+            setLayout(binding!!.referralLayout, false)
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
+
+        binding?.referralCodeSuccess?.continueButton?.setOnClickListener {
             Toast.makeText(context, "Hurrayy!!\nYou received 100 coins", Toast.LENGTH_SHORT).show()
-            setLayout(binding?.referralLayoutSuccess, true)
-        }
-        binding?.referralLayout!!.skip_button.setOnClickListener {
-            setLayout(binding?.referralLayout, false)
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
             activity?.finish()
-        }
-        binding?.referralCodeSuccess!!.continueButton.setOnClickListener {
-            setLayout(binding?.referralLayoutSuccess, false)
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
+            setLayout(binding!!.referralLayoutSuccess, false)
         }
     }
 
