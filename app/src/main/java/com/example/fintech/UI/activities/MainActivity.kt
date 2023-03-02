@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.navigationView.menu.findItem(R.id.nav_account).setOnMenuItemClickListener {
             val drawer = binding.myDrawerLayout
-            Log.e("account","im hereeeee you clicked me")
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
             drawer.closeDrawer(GravityCompat.START)

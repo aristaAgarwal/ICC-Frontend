@@ -122,7 +122,6 @@ class LoginActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "SIGNED IN", Toast.LENGTH_SHORT).show()
             if (AppPreferences(this).firstLaunch) {
-                AppPreferences(this).firstLaunch = false
                 showReferralFlow()
             } else {
                 val intent = Intent(this, MainActivity::class.java)
@@ -134,6 +133,15 @@ class LoginActivity : AppCompatActivity() {
 
     fun showReferralFlow() {
         setLayout(binding.referralLayout, true)
+
+
+        binding.referralCode.skipButton.setOnClickListener {
+            setLayout(binding.referralLayout, false)
+            AppPreferences(this).firstLaunch = false
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            this.finish()
+        }
 
         binding.referralCode.referralCode.addTextChangedListener(object : TextWatcher {
 
@@ -161,7 +169,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun setListeners(code: String) {
-        binding.referralLayout.continue_button.setOnClickListener {
+        binding.referralCode.continueButton.setOnClickListener {
             val viewModel by viewModels<MainViewModel>()
             viewModel.checkReferral(code)
             viewModel.apiCaller.observe(
@@ -171,27 +179,28 @@ class LoginActivity : AppCompatActivity() {
                     if (it.data != null) {
                         binding.referralCode.errorCode.isVisible = false
                         setLayout(binding.referralLayout, false)
-//                        setLayout(binding.referralLayoutSuccess, true)
+                        setLayout(binding.referralLayoutSuccess, true)
+                        showSuccessLayout()
                     } else {
                         binding.referralCode.errorCode.isVisible = true
                     }
                 }
             }
         }
-        binding.referralLayout.skip_button.setOnClickListener {
-            setLayout(binding.referralLayout, false)
+
+    }
+
+    fun showSuccessLayout(){
+
+        binding.referralCodeSuccess.continueButton.setOnClickListener {
+            Log.e("Success","I m clicked")
+            Toast.makeText(this, "Hurrayy!!\nYou received 100 coins", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
+            AppPreferences(this).firstLaunch = false
             startActivity(intent)
+            setLayout(binding.referralLayoutSuccess, false)
             this.finish()
         }
-//        binding.referralCodeSuccess.continueButton.setOnClickListener {
-//            Log.e("Success","I m clicked")
-//            Toast.makeText(this, "Hurrayy!!\nYou received 100 coins", Toast.LENGTH_SHORT).show()
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//            setLayout(binding.referralLayoutSuccess, false)
-//            this.finish()
-//        }
     }
 
     fun setLayout(layout: RelativeLayout, b: Boolean) {
