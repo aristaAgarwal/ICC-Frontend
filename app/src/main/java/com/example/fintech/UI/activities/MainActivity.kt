@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -48,6 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.navigationView.menu.findItem(R.id.nav_account).setOnMenuItemClickListener {
             val drawer = binding.myDrawerLayout
+            Log.e("account","im hereeeee you clicked me")
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
             drawer.closeDrawer(GravityCompat.START)
@@ -66,44 +68,13 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-
-
         if (AppPreferences(this).cookies == null) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             this.finish()
         } else {
-            if (AppPreferences(this).firstLaunch) {
-                AppPreferences(this).firstLaunch = false
-                showReferralFlow()
-            }
             getUserInfo()
         }
-    }
-
-    fun showReferralFlow() {
-        setLayout(binding.referralLayout, true)
-        val code: String = binding.referralCode.referralCode.text.toString()
-        binding.referralLayout.continue_button.setCardBackgroundColor(Color.BLACK)
-        binding.referralLayout.continue_button.setOnClickListener {
-            setLayout(binding.referralLayout, false)
-            Toast.makeText(this, "Hurrayy!!\nYou received 100 coins", Toast.LENGTH_SHORT).show()
-            setLayout(binding.referralLayoutSuccess, true)
-        }
-        binding.referralLayout.skip_button.setOnClickListener {
-            setLayout(binding.referralLayout, false)
-        }
-        binding.referralCodeSuccess.continueButton.setOnClickListener {
-            setLayout(binding.referralLayoutSuccess, false)
-        }
-    }
-
-
-    fun setLayout(layout: RelativeLayout, b: Boolean) {
-
-        layout.isFocusable = b
-        layout.isVisible = b
-        layout.isClickable = b
     }
 
     fun getUserInfo() {

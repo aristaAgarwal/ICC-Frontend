@@ -2,13 +2,16 @@ package com.example.fintech.UI.activities
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import com.example.fintech.BuildConfig
 import com.example.fintech.model.IdToken
 import com.example.fintech.R
@@ -21,6 +24,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import kotlinx.android.synthetic.main.referral_code_layout.view.*
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
@@ -113,8 +117,46 @@ class LoginActivity : AppCompatActivity() {
 
         } else {
             Toast.makeText(this, "SIGNED IN", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            if (AppPreferences(this).firstLaunch) {
+                AppPreferences(this).firstLaunch = false
+                showReferralFlow()
+            } else{
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                this.finish()
+            }
         }
     }
+
+    fun showReferralFlow() {
+        setLayout(binding.referralLayout, true)
+        val code: String = binding.referralCode.referralCode.text.toString()
+        binding.referralLayout.continue_button.setCardBackgroundColor(Color.BLACK)
+        binding.referralLayout.continue_button.setOnClickListener {
+            setLayout(binding.referralLayout, false)
+            Toast.makeText(this, "Hurrayy!!\nYou received 100 coins", Toast.LENGTH_SHORT).show()
+            setLayout(binding.referralLayoutSuccess, true)
+        }
+        binding.referralLayout.skip_button.setOnClickListener {
+            setLayout(binding.referralLayout, false)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            this.finish()
+        }
+        binding.referralCodeSuccess.continueButton.setOnClickListener {
+            setLayout(binding.referralLayoutSuccess, false)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            this.finish()
+        }
+    }
+
+
+    fun setLayout(layout: RelativeLayout, b: Boolean) {
+
+        layout.isFocusable = b
+        layout.isVisible = b
+        layout.isClickable = b
+    }
+
 }

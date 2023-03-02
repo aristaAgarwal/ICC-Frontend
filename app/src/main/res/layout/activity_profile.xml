@@ -48,7 +48,7 @@
                     android:id="@+id/profile_pic"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/profile_pic" />
+                    android:src="@drawable/ic_user" />
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Krati Agrawal"
+            android:text="User Name"
             android:textColor="@color/white"
             android:textSize="14sp" />
 
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:text="11/04/2000"
+                android:text="dd/mm/yyyy"
                 android:textColor="#808080"
                 android:textSize="10sp" />
 
@@ -105,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:text="kratiagrawal2000@gmail.com"
+                android:text="youremailid@example.domain"
                 android:textColor="#808080"
                 android:textSize="10sp" />
 

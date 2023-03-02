@@ -2,11 +2,15 @@ package com.example.fintech.UI.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.fintech.model.VerifyOtpDO
@@ -15,6 +19,7 @@ import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.FragmentOtpFetchBinding
 import com.example.fintech.viewModel.MainViewModel
 import com.google.android.gms.common.api.ApiException
+import kotlinx.android.synthetic.main.referral_code_layout.view.*
 
 
 class OtpFetch : Fragment() {
@@ -48,9 +53,14 @@ class OtpFetch : Fragment() {
             mainViewModel.apiCaller.observe(viewLifecycleOwner){
                 if (mainViewModel.cookies != null) {
                     AppPreferences(context).cookies = mainViewModel.cookies
-                    val intent = Intent(activity, MainActivity::class.java)
-                    startActivity(intent)
-                    activity?.finish()
+                    if (AppPreferences(context).firstLaunch) {
+                        AppPreferences(context).firstLaunch = false
+                        showReferralFlow()
+                    } else{
+                        val intent = Intent(context, MainActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
+                    }
                 }
             }
             // Signed in successfully, show authenticated UI.
@@ -58,5 +68,37 @@ class OtpFetch : Fragment() {
         } catch (e: ApiException) {
             Log.w("exp handleSignIn", "signInResult:failed code=" + e.statusCode)
         }
+    }
+
+
+    fun showReferralFlow() {
+        setLayout(binding?.referralLayout, true)
+        val code: String = binding?.referralCode?.referralCode?.text.toString()
+        binding?.referralLayout!!.continue_button.setCardBackgroundColor(Color.BLACK)
+        binding?.referralLayout!!.continue_button.setOnClickListener {
+            setLayout(binding?.referralLayout, false)
+            Toast.makeText(context, "Hurrayy!!\nYou received 100 coins", Toast.LENGTH_SHORT).show()
+            setLayout(binding?.referralLayoutSuccess, true)
+        }
+        binding?.referralLayout!!.skip_button.setOnClickListener {
+            setLayout(binding?.referralLayout, false)
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
+        binding?.referralCodeSuccess!!.continueButton.setOnClickListener {
+            setLayout(binding?.referralLayoutSuccess, false)
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
+    }
+
+
+    fun setLayout(layout: RelativeLayout?, b: Boolean) {
+
+        layout?.isFocusable = b
+        layout?.isVisible = b
+        layout?.isClickable = b
     }
 }

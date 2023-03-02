@@ -2,6 +2,7 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/otp_bg">
@@ -25,7 +26,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="45dp"
             android:onClick="onClick"
-            android:src="@drawable/back" />
+            android:padding="10dp"
+            android:src="@drawable/back"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
 
         <TextView
@@ -95,12 +98,12 @@
             android:layout_marginTop="26dp"
             android:autofillHints="phone"
             android:backgroundTint="#EBEBEB"
-            android:fontFamily="@font/poppins_bold"
             android:inputType="phone"
             android:letterSpacing="0.35"
             android:maxLength="6"
             android:textColor="#EBEBEB"
-            android:textSize="36sp" />
+            android:textSize="36sp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/sign_in_button"
@@ -150,5 +153,30 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/referralLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/trans_grey"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <include
+            android:id="@+id/referralCode"
+            layout="@layout/referral_code_layout"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/referralLayoutSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@color/trans_grey">
+
+        <include
+            android:id="@+id/referralCodeSuccess"
+            layout="@layout/referral_success_layout"/>
+    </RelativeLayout>
 </RelativeLayout>
 
