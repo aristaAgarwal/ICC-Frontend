@@ -120,6 +120,51 @@
                 android:textSize="14sp"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coins Disocunt"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/coin_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_20"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(2000 coins X 0.01)"
+                android:layout_marginStart="2dp"
+                android:textColor="@color/grey"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="8sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -171,7 +216,7 @@
                 android:id="@+id/total"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/_1_699"
+                android:text="@string/_1_679"
                 android:gravity="end"
                 android:layout_weight="1"
                 android:textColor="@color/white"

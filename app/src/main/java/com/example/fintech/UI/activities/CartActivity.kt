@@ -1,5 +1,6 @@
 package com.example.fintech.UI.activities
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fintech.R
 import com.example.fintech.adapter.CartItemAdapter
 import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.ActivityCartBinding
@@ -55,6 +57,7 @@ class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
 
     }
 
+    @SuppressLint("SetTextI18n")
     fun getAllProducts() {
         mainViewModel.getAllProducts(AppPreferences(this).cookies)
         mainViewModel.addProductApiCaller.observe(
@@ -71,8 +74,8 @@ class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
                         binding.emptyCart.isVisible = false
                         binding.cartDetails.isVisible = true
                         binding.checkout.setCardBackgroundColor(Color.WHITE)
-                        binding.subTotal.text = it.data.products[0].price.toString()
-                        binding.total.text = it.data.products[0].price.toString()
+                        binding.subTotal.text = getString(R.string.rupee)+it.data.products[0].price.toString()
+                        binding.total.text = getString(R.string.rupee)+(it.data.products[0].price- 20).toString()
                         binding.checkout.setOnClickListener {
                             checkout()
                         }

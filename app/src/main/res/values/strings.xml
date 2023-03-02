@@ -13,6 +13,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="_1_699">₹1,699</string>
+    <string name="_1_679">₹1,679</string>
+    <string name="rupee">₹</string>
     <string name="_1_999"><strike>₹1,999</strike></string>
     <string name="welcome_to_home_activity">WELCOME TO HOME ACTIVITY</string>
     <string name="sign_out">Sign out</string>
@@ -55,6 +57,7 @@
     <string name="orders_support"><![CDATA[Orders & support]]></string>
     <string name="support">Support</string>
     <string name="account_settings">ACCOUNT SETTINGS</string>
+    <string name="_20">-₹20</string>
     <string-array name="country_array">
         <item>Mercury</item>
         <item>Venus</item>
