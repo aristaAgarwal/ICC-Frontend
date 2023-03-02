@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_drawer_layout"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".UI.activities.MainActivity">
 
     <RelativeLayout
@@ -23,7 +22,7 @@
             app:cardCornerRadius="20dp">
 
             <ImageView
-                android:id="@+id/wrap_content"
+                android:id="@+id/profile_pic"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -36,7 +35,9 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/bottomNavigationView"
             android:layout_alignParentTop="true"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+        </FrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
@@ -44,7 +45,7 @@
             android:layout_height="75dp"
             android:layout_alignParentBottom="true"
             android:animateLayoutChanges="false"
-            android:background="#990C0C0C"
+            android:background="@color/black"
             app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
             app:labelVisibilityMode="labeled"
@@ -57,5 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="#D92E2E2E"
+        app:itemTextColor="@color/white"
         app:menu="@menu/drawer_nav_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

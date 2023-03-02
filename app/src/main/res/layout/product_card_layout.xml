@@ -11,6 +11,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         app:cardCornerRadius="10dp">
 
         <ImageView
@@ -23,7 +24,7 @@
     <TextView
         android:id="@+id/product_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/mpl_sports"
@@ -32,11 +33,11 @@
     <TextView
         android:id="@+id/product_description"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:singleLine="true"
-        android:text="@string/product_discription"
+        android:text="@string/product_description"
         android:textAppearance="@style/sub_text" />
 
     <LinearLayout
@@ -76,8 +77,10 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
         <androidx.cardview.widget.CardView
+            android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
             app:cardCornerRadius="16dp">
 
             <TextView

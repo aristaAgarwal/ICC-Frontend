@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".UI.activities.CartActivity">
+
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        android:src="@drawable/back" />
+
+    <TextView
+        android:id="@+id/cart_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:gravity="center_horizontal"
+        android:text="@string/cart"
+        android:textAppearance="@style/heading" />
+
+    <TextView
+        android:id="@+id/emptyCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/sub_heading"
+        android:gravity="center"
+        android:text="Your Cart is Empty\n Add products and enjoy shopping."
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_marginTop="100dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/CartRv"
+        android:layout_below="@id/cart_heading"
+        android:layout_above="@id/cart_details"
+        android:layout_marginVertical="21dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="true"/>
+
+    <LinearLayout
+        android:id="@+id/cart_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            app:cardCornerRadius="12dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="11dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Apply Promo Code"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sub_total"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"/>
+
+            <TextView
+                android:id="@+id/subTotal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/_1_699"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coins Disocunt"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/coin_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_20"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(2000 coins X 0.01)"
+                android:layout_marginStart="2dp"
+                android:textColor="@color/grey"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="8sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shipping"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"/>
+
+            <TextView
+                android:id="@+id/shippingCharge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/_0_00"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/dashed_line"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"/>
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/_1_679"
+                android:gravity="end"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/checkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="12dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Checkout"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginVertical="10dp"/>
+
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+</RelativeLayout>

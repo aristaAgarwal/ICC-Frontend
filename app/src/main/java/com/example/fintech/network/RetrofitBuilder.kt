@@ -7,10 +7,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    val baseUrl = "http://" +
-//            BuildConfig.IP +
-            "10.0.2.2" +
-            ":8080/"
+    private const val baseUrl = "https://icc-hack.ap-south-1.elasticbeanstalk.com"
+
+//    val baseUrl = "http://" +
+////            BuildConfig.IP +
+//             "10.0.2.2" +
+//            ":8080/"
 
     val client = OkHttpClient.Builder()
         .build()

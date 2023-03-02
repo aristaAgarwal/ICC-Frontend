@@ -19,4 +19,4 @@ data class Product(
     val updated_at: Double,
     val user_id: String,
     val uuid: String
-)
+): java.io.Serializable

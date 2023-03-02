@@ -15,7 +15,6 @@ import com.example.fintech.R
 import com.example.fintech.UI.fragments.FetchNumber
 import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.ActivityLoginBinding
-import com.example.fintech.model.Data
 import com.example.fintech.viewModel.MainViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount

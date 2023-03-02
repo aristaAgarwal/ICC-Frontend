@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Fintech</string>
+    <string name="server_client_id">146947182520-ocr0fhthouqnaq37bgtkqnrck89cjqpd.apps.googleusercontent.com</string>
     <string name="login_with_google">Login with Google</string>
     <string name="login_with_phone_number">Login with Phone number</string>
     <string name="enter_phone_number">Enter Phone Number</string>
@@ -12,6 +13,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="_1_699">₹1,699</string>
+    <string name="_1_679">₹1,679</string>
+    <string name="rupee">₹</string>
     <string name="_1_999"><strike>₹1,999</strike></string>
     <string name="welcome_to_home_activity">WELCOME TO HOME ACTIVITY</string>
     <string name="sign_out">Sign out</string>
@@ -22,6 +25,11 @@
     <string name="add">Add</string>
     <string name="_10">-10%</string>
     <string name="mpl_sports">MPL Sports</string>
+    <string name="product_description">Official Team India Fan Jersey - Virat Kohli (L)</string>
+    <string name="_5">5</string>
+    <string name="_91_reviews">(91 reviews)</string>
+    <string name="size_l">Size: L</string>
+    <string name="sample">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="product_discription">Official Team India Fan Jersey - Virat Kohli (L)</string>
     <string name="welcome">Welcome!</string>
     <string name="we_are_so_delighted_you_re_here">We are so delighted\nyou\'re here</string>
@@ -31,4 +39,41 @@
     <string name="congratulations">Congratulations!</string>
     <string name="you_just_earned_100_coins_through_a_referral">You just earned 100 coins through\na referral.</string>
     <string name="enter_referral_code">Enter referral code</string>
+    <string name="upcoming_matches">Upcoming Matches</string>
+    <string name="recent_matches">Recent Matches</string>
+    <string name="today_s_match_highlights">Today’s Match Highlights</string>
+    <string name="australia_tour_of_india_2023">Australia Tour of India 2023</string>
+    <string name="popular_in_cricket">Popular in Cricket</string>
+    <string name="hyphen">-</string>
+    <string name="_1">1</string>
+    <string name="add_product">+</string>
+    <string name="l">L</string>
+    <string name="xl">XL</string>
+    <string name="xxl">XXL</string>
+    <string name="s">S</string>
+    <string name="m">M</string>
+    <string name="description">Description</string>
+    <string name="cart">Cart</string>
+    <string name="sub_total">Sub Total</string>
+    <string name="shipping">Shipping</string>
+    <string name="_0_00">₹0.00</string>
+    <string name="total">Total</string>
+    <string name="profile">Profile</string>
+    <string name="reward_referral"><![CDATA[Reward & referral]]></string>
+    <string name="reward_coins">Reward Coins</string>
+    <string name="referral_code">Referral Code</string>
+    <string name="orders_support"><![CDATA[Orders & support]]></string>
+    <string name="support">Support</string>
+    <string name="account_settings">ACCOUNT SETTINGS</string>
+    <string name="_20">-₹20</string>
+    <string-array name="country_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
 </resources>

@@ -16,6 +16,23 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".UI.activities.SpinWheelActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".UI.activities.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.activities.CartActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".UI.activities.ProductActivity"
             android:exported="false">
             <meta-data
