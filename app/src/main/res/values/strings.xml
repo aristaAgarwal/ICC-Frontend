@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Fintech</string>
-    <string name="server_client_id">146947182520-ocr0fhthouqnaq37bgtkqnrck89cjqpd.apps.googleusercontent.com</string>
     <string name="login_with_google">Login with Google</string>
     <string name="login_with_phone_number">Login with Phone number</string>
     <string name="enter_phone_number">Enter Phone Number</string>
@@ -13,7 +12,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="_1_699">₹1,699</string>
-    <string name="_1_679">₹1,679</string>
     <string name="rupee">₹</string>
     <string name="_1_999"><strike>₹1,999</strike></string>
     <string name="welcome_to_home_activity">WELCOME TO HOME ACTIVITY</string>
@@ -66,6 +64,16 @@
     <string name="support">Support</string>
     <string name="account_settings">ACCOUNT SETTINGS</string>
     <string name="_20">-₹20</string>
+    <string-array name="country_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
     <string name="player_activity_name">Media player</string>
     <string name="media_url_mp3">https://storage.googleapis.com/exoplayer-test-media-0/Jazz_In_Paris.mp3</string>
     <!-- Big Buck Bunny video provided by the Blender Foundation.

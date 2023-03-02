@@ -61,4 +61,30 @@
         android:background="#D92E2E2E"
         app:itemTextColor="@color/white"
         app:menu="@menu/drawer_nav_menu" />
+
+    <RelativeLayout
+        android:id="@+id/referralLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/trans_grey"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <include
+            android:id="@+id/referralCode"
+            layout="@layout/referral_code_layout"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/referralLayoutSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@color/trans_grey">
+
+        <include
+            android:id="@+id/referralCodeSuccess"
+            layout="@layout/referral_success_layout"/>
+    </RelativeLayout>
+
 </androidx.drawerlayout.widget.DrawerLayout>

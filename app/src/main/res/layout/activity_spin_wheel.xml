@@ -16,31 +16,62 @@
         android:padding="10dp"
         android:src="@drawable/back" />
 
-    <ImageView
-        android:id="@+id/wheel"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/spin_wheel"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="83dp"/>
+        android:layout_marginTop="30dp"
+        android:textAppearance="@style/heading"
+        android:text="Spin Wheel"/>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/spin"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/wheel_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_below="@id/wheel"
-        android:layout_centerHorizontal="true"
-        app:cardCornerRadius="8dp">
+        android:layout_centerInParent="true">
 
-        <TextView
+        <ImageView
+            android:id="@+id/wheel_outer"
+            android:layout_width="330dp"
+            android:layout_height="330dp"
+            android:src="@drawable/outer_ring"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="13dp"/>
+        <ImageView
+            android:id="@+id/wheel"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/spin_wheel2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="27dp"/>
+
+        <ImageView
+            android:id="@+id/pointer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/pointer"
+            android:layout_centerHorizontal="true"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/spin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="80dp"
-            android:layout_marginVertical="16dp"
-            android:textAppearance="@style/dark_text"
-            android:text="Spin"/>
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/white"
+            android:layout_below="@id/wheel"
+            android:layout_centerHorizontal="true"
+            app:cardCornerRadius="8dp">
 
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="80dp"
+                android:layout_marginVertical="16dp"
+                android:textAppearance="@style/dark_text"
+                android:text="Spin"/>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
 
 </RelativeLayout>

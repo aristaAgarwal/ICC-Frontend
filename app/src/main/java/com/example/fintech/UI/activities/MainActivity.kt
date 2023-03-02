@@ -1,20 +1,28 @@
 package com.example.fintech.UI.activities
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.example.fintech.BuildConfig
 import com.example.fintech.R
 import com.example.fintech.UI.fragments.EngageFragment
 import com.example.fintech.UI.fragments.HomeFragment
@@ -23,11 +31,11 @@ import com.example.fintech.UI.fragments.StatsFragment
 import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.ActivityMainBinding
 import com.example.fintech.viewModel.MainViewModel
+import kotlinx.android.synthetic.main.referral_code_layout.view.*
 
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    var prefs: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,21 +77,47 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             this.finish()
-        }
-        else{
+        } else {
+            if (AppPreferences(this).firstLaunch) {
+                AppPreferences(this).firstLaunch = false
+                showReferralFlow()
+            }
             getUserInfo()
         }
-
-
     }
 
-    fun getUserInfo(){
+    fun showReferralFlow() {
+        setLayout(binding.referralLayout, true)
+        val code: String = binding.referralCode.referralCode.text.toString()
+        binding.referralLayout.continue_button.setCardBackgroundColor(Color.BLACK)
+        binding.referralLayout.continue_button.setOnClickListener {
+            setLayout(binding.referralLayout, false)
+            Toast.makeText(this, "Hurrayy!!\nYou received 100 coins", Toast.LENGTH_SHORT).show()
+            setLayout(binding.referralLayoutSuccess, true)
+        }
+        binding.referralLayout.skip_button.setOnClickListener {
+            setLayout(binding.referralLayout, false)
+        }
+        binding.referralCodeSuccess.continueButton.setOnClickListener {
+            setLayout(binding.referralLayoutSuccess, false)
+        }
+    }
+
+
+    fun setLayout(layout: RelativeLayout, b: Boolean) {
+
+        layout.isFocusable = b
+        layout.isVisible = b
+        layout.isClickable = b
+    }
+
+    fun getUserInfo() {
         val mainViewModel by viewModels<MainViewModel>()
         mainViewModel.getUserInfo(AppPreferences(this).cookies)
         mainViewModel.apiCaller.observe(
             this
-        ){
-            if(it != null){
+        ) {
+            if (it != null) {
                 loadImage(it.data.profile_img_url, binding.profilePic)
             }
         }
@@ -107,15 +141,5 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
 
-//    fun onNavigationItemSelected(item: MenuItem): Boolean {
-//        // Handle navigation view item clicks here.
-//        val id: Int = item.getItemId()
-//        if (id == R.id.nav_account) {
-//            val intent = Intent(this, ProfileActivity::class.java)
-//            startActivity(intent)
-//        }
-//        val drawer = binding.myDrawerLayout
-//        drawer.closeDrawer(GravityCompat.START)
-//        return true
-//    }
+
 }
