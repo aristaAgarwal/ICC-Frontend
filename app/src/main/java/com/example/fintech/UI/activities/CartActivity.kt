@@ -115,8 +115,8 @@ class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
     }
 
     fun showWebView(paymentLink: String) {
-        webView.webViewClient = WebViewClient()
 
+        val webView = binding.webView
         webView.loadUrl(paymentLink)
         webView.settings.javaScriptEnabled = true
         webView.settings.setSupportZoom(true)
@@ -124,7 +124,14 @@ class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 Log.e("url",url)
 //                view.loadUrl(url)
-                return true
+                if(url.contains("https://icc-hack.ap-south-1.elasticbeanstalk.com/test")) {
+                    webView.removeView(view)
+                    view.removeAllViews()
+                    view.clearHistory()
+                    view.destroy()
+                    onBackPressed()
+                }
+                return false
             }
 
         }
