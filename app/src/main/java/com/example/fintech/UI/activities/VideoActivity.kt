@@ -16,6 +16,7 @@
 package com.example.fintech
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -44,10 +45,12 @@ class VideoActivity : AppCompatActivity() {
     private var playWhenReady = true
     private var currentItem = 0
     private var playbackPosition = 0L
+    var url: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
+        url = intent.getStringExtra("url")
     }
 
     @androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
@@ -57,6 +60,7 @@ class VideoActivity : AppCompatActivity() {
             initializePlayer()
         }
     }
+
     @androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
     public override fun onResume() {
         super.onResume()
@@ -92,11 +96,7 @@ class VideoActivity : AppCompatActivity() {
             .build()
             .also { exoPlayer ->
                 viewBinding.videoView.player = exoPlayer
-
-                val mediaItem = MediaItem.Builder()
-                    .setUri(getString(R.string.media_url_dash))
-                    .setMimeType(MimeTypes.APPLICATION_MPD)
-                    .build()
+                val mediaItem = MediaItem.fromUri(url!!)
                 exoPlayer.setMediaItem(mediaItem)
                 exoPlayer.playWhenReady = playWhenReady
                 exoPlayer.seekTo(currentItem, playbackPosition)
@@ -121,7 +121,8 @@ class VideoActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         WindowInsetsControllerCompat(window, viewBinding.videoView).let { controller ->
             controller.hide(WindowInsetsCompat.Type.systemBars())
-            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            controller.systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
     }
 }

@@ -77,7 +77,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             this.finish()
-        } else {
+        }
+        else {
             if (AppPreferences(this).firstLaunch) {
                 AppPreferences(this).firstLaunch = false
                 showReferralFlow()

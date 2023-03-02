@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/video_card">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/video_thumbnail" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/blue_hue"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2 min"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="165dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="8sp"
+        android:textColor="#B3FFFFFF"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/play_pause" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="140dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#4DFFFFFF"
+                app:cardCornerRadius="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="3dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="#TUTORIAL"
+                    android:textColor="@color/white"
+                    android:textSize="8sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#4DFFFFFF"
+                android:layout_marginStart="4dp"
+                app:cardCornerRadius="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="3dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="#LEARN"
+                    android:textColor="@color/white"
+                    android:textSize="8sp" />
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/video_title"
+            android:layout_marginTop="4dp"
+            android:layout_width="126dp"
+            android:layout_height="wrap_content"
+            android:text="It’s a Win! Spain won by 14 Run(s)"
+            android:textSize="12dp"
+            android:maxLines="2"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Feb 25,2023"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="8sp"
+            android:textColor="#B3FFFFFF"/>
+    </LinearLayout>
+
+</RelativeLayout>
