@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fintech.R
 import com.example.fintech.VideoActivity
 import com.example.fintech.adapter.ProductCardAdapter
 import com.example.fintech.adapter.VideoItemAdapter
@@ -32,10 +33,6 @@ class VideosFragment : Fragment(), VideoItemAdapter.AppLinkClick {
         // Inflate the layout for this fragment
         binding = FragmentVideosBinding.inflate(inflater, container, false)
         getVideos(AppPreferences(context).cookies, "tutorials")
-//        binding!!.videoButton.setOnClickListener {
-
-//        }
-
         return binding!!.root
     }
     private fun getVideos(cookies: String, type: String){
@@ -47,17 +44,33 @@ class VideosFragment : Fragment(), VideoItemAdapter.AppLinkClick {
             if (it.code == 200) {
                 Log.e("VideosFragment", it.data.toString())
                 setTutorialsAdapter(it.data)
+                setAustraliaTourAdapter(it.data)
+                setPopularAdapter(it.data)
             }
         }
     }
 
 
     fun setTutorialsAdapter(data: List<VideosData>) {
-        Log.e("shopActivity", "In here")
+        Log.e("Video Fragment", "In here")
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         binding?.tutorialsRv?.layoutManager = layoutManager
-        binding?.tutorialsRv?.adapter = VideoItemAdapter(requireContext(), data, this)
+        binding?.tutorialsRv?.adapter = VideoItemAdapter(requireContext(), data, this, "first")
+    }
+
+    fun setAustraliaTourAdapter(data: List<VideosData>) {
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        binding?.australiaTourRv?.layoutManager = layoutManager
+        binding?.australiaTourRv?.adapter = VideoItemAdapter(requireContext(), data, this, "second")
+    }
+
+    fun setPopularAdapter(data: List<VideosData>) {
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        binding?.popularRv?.layoutManager = layoutManager
+        binding?.popularRv?.adapter = VideoItemAdapter(requireContext(), data, this, "third")
     }
     override fun onAppLinkClicked(url: String) {
         val intent = Intent(activity, VideoActivity::class.java)
