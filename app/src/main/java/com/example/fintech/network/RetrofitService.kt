@@ -14,4 +14,5 @@ class RetrofitService {
     var removeProduct = RetrofitBuilder.getInstance().create(CartProduct::class.java)
     var checkout = RetrofitBuilder.getInstance().create(Checkout::class.java)
     var checkReferral = RetrofitBuilder.getInstance().create(Authentication::class.java)
+    var videos = RetrofitBuilder.getInstance().create(GetTutorials::class.java)
 }

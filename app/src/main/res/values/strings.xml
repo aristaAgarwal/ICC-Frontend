@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Fintech</string>
-    <string name="server_client_id">146947182520-ocr0fhthouqnaq37bgtkqnrck89cjqpd.apps.googleusercontent.com</string>
     <string name="login_with_google">Login with Google</string>
     <string name="login_with_phone_number">Login with Phone number</string>
     <string name="enter_phone_number">Enter Phone Number</string>
@@ -30,6 +29,14 @@
     <string name="size_l">Size: L</string>
     <string name="sample">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="product_discription">Official Team India Fan Jersey - Virat Kohli (L)</string>
+    <string name="welcome">Welcome!</string>
+    <string name="we_are_so_delighted_you_re_here">We are so delighted\nyou\'re here</string>
+    <string name="collect_100_coins_on_entering_the_referral_code">Collect 100 coins on entering\nthe referral code</string>
+    <string name="continue_button">Continue</string>
+    <string name="skip">skip</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="you_just_earned_100_coins_through_a_referral">You just earned 100 coins through\na referral.</string>
+    <string name="enter_referral_code">Enter referral code</string>
     <string name="upcoming_matches">Upcoming Matches</string>
     <string name="recent_matches">Recent Matches</string>
     <string name="today_s_match_highlights">Today’s Match Highlights</string>
@@ -67,12 +74,11 @@
         <item>Uranus</item>
         <item>Neptune</item>
     </string-array>
-    <string name="welcome">Welcome!</string>
-    <string name="we_are_so_delighted_you_re_here">We are so delighted\nyou\'re here</string>
-    <string name="collect_100_coins_on_entering_the_referral_code">Collect 100 coins on entering\nthe referral code</string>
-    <string name="continue_button">Continue</string>
-    <string name="skip">skip</string>
-    <string name="congratulations">Congratulations!</string>
-    <string name="you_just_earned_100_coins_through_a_referral">You just earned 100 coins through\na referral.</string>
-    <string name="enter_referral_code">Enter referral code</string>
+    <string name="player_activity_name">Media player</string>
+    <string name="media_url_mp3">https://storage.googleapis.com/exoplayer-test-media-0/Jazz_In_Paris.mp3</string>
+    <!-- Big Buck Bunny video provided by the Blender Foundation.
+    (c) copyright 2008, Blender Foundation / www.bigbuckbunny.org -->
+    <string name="media_url_mp4">https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4</string>
+    <string name="media_url_dash"><![CDATA[https://www.youtube.com/api/manifest/dash/id/bf5bb2419360daf1/source/youtube?as=fmp4_audio_clear,fmp4_sd_hd_clear&sparams=ip,ipbits,expire,source,id,as&ip=0.0.0.0&ipbits=0&expire=19000000000&signature=51AF5F39AB0CEC3E5497CD9C900EBFEAECCCB5C7.8506521BFC350652163895D4C26DEE124209AA9E&key=ik0]]></string>
+    <string name="logo">Google logo</string>
 </resources>

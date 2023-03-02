@@ -159,7 +159,7 @@
                 android:layout_marginStart="2dp"
                 android:textColor="@color/grey"
                 android:fontFamily="@font/poppins_regular"
-                android:textSize="8sp"/>
+                android:textSize="10sp"/>
 
             </LinearLayout>
 

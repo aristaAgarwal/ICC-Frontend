@@ -14,7 +14,7 @@ object RetrofitBuilder {
 //             "10.0.2.2" +
 //            ":8080/"
 
-    private val client = OkHttpClient.Builder()
+    val client = OkHttpClient.Builder()
         .build()
 
     fun getInstance(): Retrofit {

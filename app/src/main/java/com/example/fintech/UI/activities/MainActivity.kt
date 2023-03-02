@@ -7,8 +7,6 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -66,6 +64,8 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+
 
         if (AppPreferences(this).cookies == null) {
             val intent = Intent(this, LoginActivity::class.java)
