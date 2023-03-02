@@ -67,6 +67,7 @@
             android:background="@drawable/grey_edittext"
             android:textAppearance="@style/dark_text"
             android:textColor="@color/black"
+            android:singleLine="true"
             android:gravity="center"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         <TextView

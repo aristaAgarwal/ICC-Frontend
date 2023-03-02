@@ -57,7 +57,6 @@ class OtpFetch : Fragment() {
                 if (mainViewModel.cookies != null) {
                     AppPreferences(context).cookies = mainViewModel.cookies
                     if (AppPreferences(context).firstLaunch) {
-                        AppPreferences(context).firstLaunch = false
                         showReferralFlow()
                     } else{
                         val intent = Intent(context, MainActivity::class.java)
@@ -124,6 +123,7 @@ class OtpFetch : Fragment() {
 
         binding?.referralLayout?.skip_button?.setOnClickListener {
             setLayout(binding!!.referralLayout, false)
+            AppPreferences(context).firstLaunch = false
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
             activity?.finish()
@@ -132,6 +132,7 @@ class OtpFetch : Fragment() {
         binding?.referralCodeSuccess?.continueButton?.setOnClickListener {
             Toast.makeText(context, "Hurrayy!!\nYou received 100 coins", Toast.LENGTH_SHORT).show()
             val intent = Intent(context, MainActivity::class.java)
+            AppPreferences(context).firstLaunch = false
             startActivity(intent)
             activity?.finish()
             setLayout(binding!!.referralLayoutSuccess, false)

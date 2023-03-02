@@ -50,7 +50,7 @@ class CartItemAdapter(
             description.text = product.description
             mrp.text = product.price.toString()
             mrp.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            discountedMrp.text = product.discount.toString()
+            discountedMrp.text = (product.price * 0.9).toString()
             description.isSingleLine = true
             Log.e("CartAdapter", product.toString())
             delete.setOnClickListener{

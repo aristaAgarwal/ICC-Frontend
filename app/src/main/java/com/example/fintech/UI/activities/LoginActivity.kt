@@ -1,24 +1,27 @@
 package com.example.fintech.UI.activities
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.fintech.BuildConfig
-import com.example.fintech.model.IdToken
 import com.example.fintech.R
 import com.example.fintech.UI.fragments.FetchNumber
 import com.example.fintech.constants.AppPreferences
 import com.example.fintech.databinding.ActivityLoginBinding
+import com.example.fintech.model.IdToken
 import com.example.fintech.viewModel.MainViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -29,6 +32,7 @@ import kotlinx.android.synthetic.main.referral_code_layout.view.*
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
+    var flag: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -132,7 +136,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun showReferralFlow() {
-        setLayout(binding.referralLayout, true)
+        if (!flag)
+            setLayout(binding.referralLayout, true)
 
 
         binding.referralCode.skipButton.setOnClickListener {
@@ -170,8 +175,13 @@ class LoginActivity : AppCompatActivity() {
 
     fun setListeners(code: String) {
         binding.referralCode.continueButton.setOnClickListener {
+
+            window.setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+            );
             val viewModel by viewModels<MainViewModel>()
             viewModel.checkReferral(code)
+            flag = true
             viewModel.apiCaller.observe(
                 this
             ) {
@@ -189,11 +199,14 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
-
-    fun showSuccessLayout(){
+    fun View.hideSoftInput(){
+        val inputMethodManager = this@LoginActivity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(windowToken,0)
+    }
+    fun showSuccessLayout() {
 
         binding.referralCodeSuccess.continueButton.setOnClickListener {
-            Log.e("Success","I m clicked")
+            Log.e("Success", "I m clicked")
             Toast.makeText(this, "Hurrayy!!\nYou received 100 coins", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
             AppPreferences(this).firstLaunch = false

@@ -394,7 +394,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:paddingVertical="10dp"
-                    android:text="Go to cart"
+                    android:text="Add and Go to cart"
                     android:textAppearance="@style/dark_text" />
             </androidx.cardview.widget.CardView>
 

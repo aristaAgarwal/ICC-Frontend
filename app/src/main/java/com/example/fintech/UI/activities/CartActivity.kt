@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.activity_cart.*
 class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
     lateinit var binding: ActivityCartBinding
     var cartId: String? = null
+    var total: Int = 0
     val mainViewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,8 +75,12 @@ class CartActivity : AppCompatActivity(), CartItemAdapter.AppLinkClick {
                         binding.emptyCart.isVisible = false
                         binding.cartDetails.isVisible = true
                         binding.checkout.setCardBackgroundColor(Color.WHITE)
-                        binding.subTotal.text = getString(R.string.rupee)+it.data.products[0].price.toString()
-                        binding.total.text = getString(R.string.rupee)+(it.data.products[0].price- 20).toString()
+                        var total = 0
+                        it.data.products.forEach {
+                            total += it.price
+                        }
+                        binding.subTotal.text = getString(R.string.rupee)+total.toString()
+                        binding.total.text = getString(R.string.rupee)+(total - 20).toString()
                         binding.checkout.setOnClickListener {
                             checkout()
                         }
