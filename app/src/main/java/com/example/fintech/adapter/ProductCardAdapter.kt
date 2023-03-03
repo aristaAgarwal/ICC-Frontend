@@ -19,6 +19,9 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.fintech.R
 import com.example.fintech.model.Product
+import java.math.RoundingMode
+import java.text.DecimalFormat
+import java.util.*
 
 class ProductCardAdapter(
     var context: Context,
@@ -38,12 +41,16 @@ class ProductCardAdapter(
         var discount = view.findViewById<TextView>(R.id.discount)
         var addButton = view.findViewById<CardView>(R.id.add_button)
         fun bindItem(product: Product) {
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.DOWN
             title.text = product.name
             description.text = product.description
-            mrp.text = product.price.toString()
+            mrp.text = product.discount.toString()
             mrp.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            discountedMrp.text = product.discount.toString()
+            discountedMrp.text = product.price.toString()
             description.isSingleLine = true
+            var discounts = (product.discount - product.price.toFloat()) / product.discount * 100
+            discount.text = df.format(discounts)
 
             loadImage(product.display_image, image)
             product_layout.setOnClickListener {

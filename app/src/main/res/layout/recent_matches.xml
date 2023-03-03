@@ -187,6 +187,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="22dp"
+            android:backgroundTint="@color/white"
             app:cardCornerRadius="0dp">
 
             <LinearLayout

@@ -19,9 +19,6 @@
             android:name=".VideoActivity"
             android:exported="false" />
         <activity
-            android:name=".ActivityPlayer"
-            android:exported="false" />
-        <activity
             android:name=".UI.activities.SpinWheelActivity"
             android:exported="false">
             <meta-data

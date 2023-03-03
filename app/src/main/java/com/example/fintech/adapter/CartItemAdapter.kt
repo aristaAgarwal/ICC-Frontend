@@ -16,6 +16,8 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.fintech.R
 import com.example.fintech.model.Product
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class CartItemAdapter(
     var context: Context,
@@ -43,17 +45,22 @@ class CartItemAdapter(
         var mrp = view.findViewById<TextView>(R.id.mrp)
         var discountedMrp = view.findViewById<TextView>(R.id.discounted_mrp)
         var delete = view.findViewById<ImageView>(R.id.delete)
+        var discount = view.findViewById<TextView>(R.id.discount)
         fun bindItem(product: Product) {
 
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.DOWN
             loadImage(product.display_image, image)
             title.text = product.name
             description.text = product.description
-            mrp.text = product.price.toString()
+            mrp.text = product.discount.toString()
             mrp.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            discountedMrp.text = (product.price * 0.9).toString()
+            discountedMrp.text = product.price.toString()
             description.isSingleLine = true
+            val discounts = (product.discount - product.price.toFloat()) / product.discount * 100
+            discount.text = df.format(discounts)
             Log.e("CartAdapter", product.toString())
-            delete.setOnClickListener{
+            delete.setOnClickListener {
 
                 onAppLinkClick.onAppLinkClicked(product.uuid, product.sizes[0])
             }

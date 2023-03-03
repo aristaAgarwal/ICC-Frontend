@@ -28,6 +28,7 @@ import kotlinx.android.synthetic.main.referral_code_layout.view.*
 class OtpFetch : Fragment() {
 
     var binding: FragmentOtpFetchBinding? = null
+    var flag: Boolean = false
     @SuppressLint("SetTextI18n", "LongLogTag")
 
     override fun onCreateView(
@@ -74,7 +75,9 @@ class OtpFetch : Fragment() {
 
 
     fun showReferralFlow() {
-        setLayout(binding?.referralLayout, true)
+        if(!flag){
+            setLayout(binding?.referralLayout, true)
+        }
 
         binding?.referralCode!!.referralCode.addTextChangedListener(object : TextWatcher {
 
@@ -99,12 +102,21 @@ class OtpFetch : Fragment() {
             }
         })
 
+
+        binding?.referralLayout?.skip_button?.setOnClickListener {
+            setLayout(binding!!.referralLayout, false)
+            AppPreferences(context).firstLaunch = false
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
     }
 
     fun setListeners(code: String) {
         binding!!.referralLayout.continue_button.setOnClickListener {
             val viewModel by viewModels<MainViewModel>()
             viewModel.checkReferral(code)
+            flag = true
             viewModel.apiCaller.observe(
                 this
             ) {
@@ -119,14 +131,6 @@ class OtpFetch : Fragment() {
                     }
                 }
             }
-        }
-
-        binding?.referralLayout?.skip_button?.setOnClickListener {
-            setLayout(binding!!.referralLayout, false)
-            AppPreferences(context).firstLaunch = false
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
         }
 
         binding?.referralCodeSuccess?.continueButton?.setOnClickListener {

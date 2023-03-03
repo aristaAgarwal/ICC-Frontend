@@ -29,7 +29,11 @@ class SpinWheelActivity : AppCompatActivity(), Animation.AnimationListener {
     }
 
     fun startSpinner() {
-        val end = (0..3599).random().toFloat()
+        var end = (360 ..3599).random().toFloat()
+        end = if(end % 30 < 5f || end % 30 > 25)
+            end + 15f
+        else
+            end
         val rotateAnim = RotateAnimation(
             0f, end , Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
         )
@@ -45,7 +49,8 @@ class SpinWheelActivity : AppCompatActivity(), Animation.AnimationListener {
     }
 
     override fun onAnimationEnd(animation: Animation?) {
-        Toast.makeText(this, "Hurrayyy!!!!\nYou earned 1000 coins", Toast.LENGTH_LONG).show()
+        val coins = (0..1000).random()
+        Toast.makeText(this, "Hurrayyy!!!!\nYou earned $coins coins", Toast.LENGTH_LONG).show()
     }
 
     override fun onAnimationRepeat(animation: Animation?) {
